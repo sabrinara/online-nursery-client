@@ -67,8 +67,8 @@ export function HeroSection() {
                   onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")} // Equivalent to hover:scale-105
                   onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")} // Reset the scale on hover out
                 >
-                  <div className="my-10 md:mt-36 ml-10 md:ml-40 text-start">
-                    <h5 className="font-jost text-xs md:text-base font-medium md:pb-2 tracking-widest uppercase">{slider.subText}</h5>
+                  <div className="my-10 md:mt-36 ml-10 md:ml-40 text-start ">
+                    <h5 className="font-jost text-xs md:text-base text-green-900 font-medium md:pb-2 tracking-widest uppercase">{slider.subText}</h5>
                     <h2 className="text-xl md:text-6xl font-bold md:mb-2 text-green-950">
                       {slider.text}
                     </h2>
@@ -89,10 +89,10 @@ export function HeroSection() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="absolute left-1 md:left-4 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 p-2 rounded-full cursor-pointer hover:bg-opacity-75 transition-opacity duration-300">
+        <CarouselPrevious className="absolute left-1 md:left-4 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 p-1 md:p-2 rounded-full cursor-pointer hover:bg-opacity-75 transition-opacity duration-300">
           &#9664;
         </CarouselPrevious>
-        <CarouselNext className="absolute right-1 md:right-4 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 p-2 rounded-full cursor-pointer hover:bg-opacity-75 transition-opacity duration-300">
+        <CarouselNext className="absolute right-1 md:right-4 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 p-1 md:p-2 rounded-full cursor-pointer hover:bg-opacity-75 transition-opacity duration-300">
           &#9654;
         </CarouselNext>
       </Carousel>

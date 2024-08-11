@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 const MainLayout = () => {
   return (
-    <div className="text-green-800">
+    <div className="text-green-900">
       {/* text-[#11522c] */}
       <Navbar></Navbar>
       <Outlet ></Outlet>
