@@ -58,14 +58,12 @@ export function HeroSection() {
                     backgroundImage: `url(${slider.image})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                  
-                    
-                    transition: "transform 0.5s ease", // Equivalent to transition-transform duration-500
-                    transform: "scale(1)", // Default scale
+                    backgroundRepeat: "no-repeat",  
+                    transition: "transform 0.5s ease", 
+                    transform: "scale(1)", 
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")} // Equivalent to hover:scale-105
-                  onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")} // Reset the scale on hover out
+                  onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")} 
+                  onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")} 
                 >
                   <div className="my-10 md:mt-36 ml-10 md:ml-40 text-start ">
                     <h5 className="font-jost text-xs md:text-base text-green-900 font-medium md:pb-2 tracking-widest uppercase">{slider.subText}</h5>
