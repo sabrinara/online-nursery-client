@@ -53,25 +53,26 @@ export function HeroSection() {
             <CarouselItem key={slider.id} className="min-w-full">
               <Card className="bg-transparent">
                 <CardContent
-                  className="flex  h-[500px] p-0"
+                  className="flex h-full w-full  md:h-[500px] p-0"
                   style={{
                     backgroundImage: `url(${slider.image})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
-                    height: "500px",
+                  
+                    
                     transition: "transform 0.5s ease", // Equivalent to transition-transform duration-500
                     transform: "scale(1)", // Default scale
                   }}
                   onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")} // Equivalent to hover:scale-105
                   onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")} // Reset the scale on hover out
                 >
-                  <div className=" mt-36 ml-40 text-start">
-                    <h5 className="font-jost text-base font-medium pb-2 tracking-widest uppercase">{slider.subText}</h5>
-                    <h2 className="text-6xl font-bold mb-2 text-green-950">
+                  <div className="my-10 md:mt-36 ml-10 md:ml-40 text-start">
+                    <h5 className="font-jost text-xs md:text-base font-medium md:pb-2 tracking-widest uppercase">{slider.subText}</h5>
+                    <h2 className="text-xl md:text-6xl font-bold md:mb-2 text-green-950">
                       {slider.text}
                     </h2>
-                    <p className="text-md font-medium mt-4">
+                    <p className="hidden md:flex text-md font-medium md:mt-4">
                       {slider.details?.split("{{br}}")?.map((line, index) => (
                         <React.Fragment key={index}>
                           {line}
@@ -79,7 +80,7 @@ export function HeroSection() {
                         </React.Fragment>
                       ))}
                     </p>
-                    <Button className="border-2 border-green-800 px-6 py-5 rounded-none bg-transparent text-green-800 mt-4 hover:bg-green-950 hover:text-white">
+                    <Button className="border-2 border-green-800 px-2 md:px-6 py-1 md:py-5 rounded-none bg-transparent text-green-800 mt-2 md:mt-4 hover:bg-green-950 hover:text-white">
                       Learn More
                     </Button>
                   </div>
@@ -88,10 +89,10 @@ export function HeroSection() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 p-2 rounded-full cursor-pointer hover:bg-opacity-75 transition-opacity duration-300">
+        <CarouselPrevious className="absolute left-1 md:left-4 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 p-2 rounded-full cursor-pointer hover:bg-opacity-75 transition-opacity duration-300">
           &#9664;
         </CarouselPrevious>
-        <CarouselNext className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 p-2 rounded-full cursor-pointer hover:bg-opacity-75 transition-opacity duration-300">
+        <CarouselNext className="absolute right-1 md:right-4 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 p-2 rounded-full cursor-pointer hover:bg-opacity-75 transition-opacity duration-300">
           &#9654;
         </CarouselNext>
       </Carousel>
