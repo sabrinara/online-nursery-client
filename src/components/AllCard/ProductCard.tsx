@@ -59,9 +59,9 @@ const ProductCard = () => {
                 {data.map((item) => (
                     <div className="rounded-2xl mb-5 " key={item.id}>
                         <div className="relative group">
-                            <img src={item.imageUrl} alt={item.title} className="w-full h-auto" />
+                            <img src={item.imageUrl} alt={item.title} className="w-full h-auto " />
                             <div className="absolute inset-0 flex items-center justify-center gap-4 top-3/4 bg-green-200 bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <FaRegHeart className="text-2xl hover:bg-green-800 hover:text-white hover:rounded-full hover:p-[7px] " title={`${item.rating}`}/>
+                                <FaRegHeart className="text-2xl hover:bg-green-800 hover:text-white hover:rounded-full hover:p-[7px] " title={`Rating-${item.rating}`}/>
                                 < VscOpenPreview className="text-2xl hover:bg-green-800 hover:text-white hover:rounded-full hover:p-[7px] "  title="View Details" />
                                 <IoCartOutline className="text-2xl hover:bg-green-800 hover:text-white hover:rounded-full hover:p-[7px] " title="Add To Cart" />
                             </div>
