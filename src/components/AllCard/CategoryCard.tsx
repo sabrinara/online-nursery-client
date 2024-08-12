@@ -55,10 +55,10 @@ const CategoryCard = () => {
         },
     ]
     return (
-        <div className="my-28">
+        <div className="my-10 md:my-28">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 {data.map((item , index) => (
-                    <div   className={`rounded-2xl mb-5 ${index % 2 === 0 ? 'translate-y-10' : '-translate-y-10'}`} 
+                    <div   className={`rounded-2xl mb-5 ${index % 2 === 0 ? 'translate-y-0 md:translate-y-10' : 'translate-y-0 md:-translate-y-10'}`} 
                     key={item.id}>
                         <div className="relative group">
                             <img src={item.imageUrl} alt={item.title} className="w-full h-96 " />
