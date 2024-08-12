@@ -72,7 +72,7 @@ const Footer = () => {
                         <h3>© 2024 NatureNest.</h3>
                         {/* <h3>English</h3> */}
                         <h3 className="text-sm font-semibold mb-10">
-                            A nursery website for user.
+                            A nursery website for Nature Lover.
                         </h3>
 
                     </div>

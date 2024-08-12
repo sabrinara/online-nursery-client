@@ -52,7 +52,7 @@ export function HeroSection() {
             <CarouselItem key={slider.id} className="min-w-full">
               <Card className="bg-transparent">
                 <CardContent
-                  className="flex h-full w-full  md:h-[500px] p-0"
+                  className="flex h-[250px] w-full  md:h-[500px] p-0"
                   style={{
                     backgroundImage: `url(${slider.image})`,
                     backgroundSize: "cover",
@@ -64,12 +64,12 @@ export function HeroSection() {
                   onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
                   onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
                 >
-                  <div className="my-10 md:mt-36 ml-10 md:ml-40 text-start ">
+                  <div className="my-16 md:mt-36 ml-10 md:ml-40 text-start ">
                     <h5 className="font-jost text-xs md:text-base text-green-900 font-medium md:pb-2 tracking-widest uppercase">{slider.subText}</h5>
                     <h2 className="text-xl md:text-6xl font-bold md:mb-2 text-green-950">
                       {slider.text}
                     </h2>
-                    <p className="hidden md:flex text-md font-medium md:mt-4">
+                    <p className=" text-xs md:text-base font-medium md:mt-4">
                       {slider.details?.split("{{br}}")?.map((line, index) => (
                         <React.Fragment key={index}>
                           {line}
