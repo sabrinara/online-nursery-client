@@ -10,7 +10,6 @@ import {
 import sliderImage1 from "@/assets/banner.jpg";
 import sliderImage2 from "@/assets/banner2.jpg";
 import sliderImage3 from "@/assets/banner3.jpg";
-import { Button } from "../ui/button";
 import React from "react";
 
 export function HeroSection() {
@@ -37,7 +36,7 @@ export function HeroSection() {
       details: "We’re Spring Plant, When you’ve got your {{br}} health, you got everything.",
     },
   ];
-  
+
   return (
     <div className="relative w-full h-[500px] mt-6">
       <Carousel
@@ -58,12 +57,12 @@ export function HeroSection() {
                     backgroundImage: `url(${slider.image})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",  
-                    transition: "transform 0.5s ease", 
-                    transform: "scale(1)", 
+                    backgroundRepeat: "no-repeat",
+                    transition: "transform 0.5s ease",
+                    transform: "scale(1)",
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")} 
-                  onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")} 
+                  onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
                 >
                   <div className="my-10 md:mt-36 ml-10 md:ml-40 text-start ">
                     <h5 className="font-jost text-xs md:text-base text-green-900 font-medium md:pb-2 tracking-widest uppercase">{slider.subText}</h5>
@@ -78,9 +77,9 @@ export function HeroSection() {
                         </React.Fragment>
                       ))}
                     </p>
-                    <Button className="border-2 border-green-800 px-2 md:px-6 py-1 md:py-5 rounded-none bg-transparent text-green-800 mt-2 md:mt-4 hover:bg-green-950 hover:text-white">
+                    <button className="border-2  border-green-800 text-xs md:text-base px-2 md:px-6 py-1 md:py-5 rounded-none bg-transparent text-green-800 mt-4 md:mt-4 hover:bg-green-950 hover:text-white">
                       Learn More
-                    </Button>
+                    </button>
                   </div>
                 </CardContent>
               </Card>
