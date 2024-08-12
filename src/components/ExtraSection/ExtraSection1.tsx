@@ -7,8 +7,9 @@ const ExtraSection1 = () => {
     style={{ 
         backgroundImage: `url(${Extra})` ,
         backgroundSize: "cover",
+        backgroundPosition: "center",
         }}>
-      <div className="absolute bottom-1  right-10 md:bottom-28 md:right-60 text-end md:text-start animate-bounce">
+      <div className="absolute bottom-10  right-10 md:bottom-28 md:right-60 text-end md:text-start animate-bounce">
         <h5 className="font-jost text-xs md:text-lg font-medium md:pb-2 tracking-widest text-green-900">The  Garden</h5>
         <h2 className="text-xl md:text-6xl font-bold md:mb-2 text-green-950">
         Deliciosa Plant

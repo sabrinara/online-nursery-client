@@ -8,14 +8,14 @@ const ProductCard = () => {
             imageUrl: "https://gabtor-store-demo.myshopify.com/cdn/shop/products/1_bfa8b69d-29a9-42fa-bb73-cef92fd91d9a.jpg?v=1662541921",
             title: "Leopard Lily",
             price: 200,
-            rating: 5,
+            rating: 2.5,
         },
         {
             id: 2,
             imageUrl: "https://gabtor-store-demo.myshopify.com/cdn/shop/products/1_bfa8b69d-29a9-42fa-bb73-cef92fd91d9a.jpg?v=1662541921",
             title: "Calathea Plant",
             price: 200,
-            rating: 5,
+            rating: 3.5,
         },
         {
             id: 3,
@@ -55,17 +55,23 @@ const ProductCard = () => {
     ]
     return (
         <div className="my-10">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
                 {data.map((item) => (
                     <div className="rounded-2xl mb-5 " key={item.id}>
-                        <div className="relative group">
-                            <img src={item.imageUrl} alt={item.title} className="w-full h-auto " />
+                        <div className="relative group bg-orange-50">
+                            <img src={item.imageUrl} alt={item.title} className="w-full h-80 " />
                             <div className="absolute inset-0 flex items-center justify-center gap-4 top-3/4 bg-green-200 bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <FaRegHeart className="text-2xl hover:bg-green-800 hover:text-white hover:rounded-full hover:p-[7px] " title={`Rating-${item.rating}`}/>
-                                < VscOpenPreview className="text-2xl hover:bg-green-800 hover:text-white hover:rounded-full hover:p-[7px] "  title="View Details" />
+                                {/* <FaRegHeart className="text-2xl hover:bg-green-800 hover:text-white hover:rounded-full hover:p-[7px] " title="Add To Rating"/> */}
+                                < VscOpenPreview className="text-2xl hover:bg-green-800 hover:text-white hover:rounded-full hover:p-[7px] " title="View Details" />
                                 <IoCartOutline className="text-2xl hover:bg-green-800 hover:text-white hover:rounded-full hover:p-[7px] " title="Add To Cart" />
                             </div>
+                            <div className="absolute flex items-center justify-center gap-1 top-4 right-4 ">
+                                <FaRegHeart className="text-center text-xl mt-1" />
+                                <h5 className="text-xl font-semibold">{item.rating}</h5>
+                            </div>
                         </div>
+
+
                         <h3 className="text-center mt-4 font-bold text-black text-lg">{item.title}</h3>
                         <p className="text-center font-bold  text-md  text-green-700">$ {item.price}</p>
                     </div>
