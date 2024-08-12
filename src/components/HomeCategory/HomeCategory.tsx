@@ -1,4 +1,4 @@
-import React from 'react';
+
 import CategoryCard from '../AllCard/CategoryCard';
 
 const HomeCategory = () => {

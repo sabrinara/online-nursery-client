@@ -1,6 +1,6 @@
-import { VscOpenPreview } from "react-icons/vsc";
-import { FaArrowRight, FaRegHeart } from "react-icons/fa";
-import { IoCartOutline } from "react-icons/io5";
+
+import { FaArrowRight } from "react-icons/fa";
+
 
 const CategoryCard = () => {
     const data = [
