@@ -55,7 +55,7 @@ const ProductCard = () => {
     ]
     return (
         <div className="my-10">
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 {data.map((item) => (
                     <div className="rounded-2xl mb-5 " key={item.id}>
                         <div className="relative group">
