@@ -38,7 +38,7 @@ export function HeroSection() {
   ];
 
   return (
-    <div className="relative w-full h-[500px] mt-6">
+    <div className="relative w-full h-full md:h-[500px] mt-6">
       <Carousel
         className="overflow-hidden rounded-lg shadow-lg"
         plugins={[
