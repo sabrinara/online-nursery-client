@@ -17,7 +17,7 @@ const ExtraSection1 = () => {
         <p className="text-xs md:text-base font-medium md:mt-4 text-black">
         It is a long established fact that a reader will be <br/> distracted by the readable content
         </p>
-        <Button className="border-2  border-green-800 text-xs md:text-base px-[6px] md:px-6 py-0 md:py-5 rounded-none bg-transparent text-green-800 mt-2 md:mt-4 hover:bg-green-950 hover:text-white">
+        <Button className="border-2  border-green-800 text-xs md:text-base px-[6px] md:px-6 py-0 md:py-6 font-bold rounded-none bg-transparent text-green-800 mt-2 md:mt-4 hover:bg-green-950 hover:text-white">
           Learn More
         </Button>
       </div>
