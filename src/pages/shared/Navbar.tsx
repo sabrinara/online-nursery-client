@@ -21,7 +21,7 @@ export default function Navbar() {
     {
       id: 2,
       name: "Products",
-      path: "/products",
+      path: "/allproducts",
     },
     {
       id: 3,

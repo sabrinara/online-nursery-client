@@ -75,7 +75,7 @@ const CategoryCard = () => {
                 ))}
                 <div>
                     <div className="flex items-center justify-center gap-4 my-20 md:my-0 md:mt-28 hover:animate-wobble">
-                        <button className="relative flex items-center justify-center border-2 border-green-800 text-green-900  px-6 py-3 rounded-ss w-20 h-20 bg-white shadow-lg hover:bg-green-50 transition duration-300">
+                        <button className="relative flex items-center justify-center border-2 border-green-800 text-green-900  px-6 py-3 rounded-ss w-20 h-20 bg-white shadow-lg transition duration-300">
 
 
                         </button>
