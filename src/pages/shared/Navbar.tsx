@@ -44,7 +44,7 @@ export default function Navbar() {
     <div className="mx-auto container">
       <div className="flex flex-wrap items-center justify-between border-b-2 lg:p-0">
         <Link to="/" className="flex items-center">
-          <img src={Logo} alt="Logo" className="h-14 md:h-16 mt-2" />
+          <img src={Logo} alt="Logo" className="h-14 md:h-20 mt-2" />
         </Link>
 
         {/* large and medium screens */}
