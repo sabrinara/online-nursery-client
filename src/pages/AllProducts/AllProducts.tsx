@@ -1,8 +1,10 @@
+import AllProductsTable from "@/components/AllTable/AllProductsTable";
 import { Button } from "@/components/ui/button";
 
 const AllProducts = () => {
   return (
-    <div className="relative w-full h-[50vh] md:h-[80vh] bg-no-repeat bg-center bg-cover" 
+  <div className="flex flex-col items-center justify-center">
+      <div className="relative w-full h-[50vh] md:h-[60vh] bg-no-repeat bg-center bg-cover" 
     style={{ 
         backgroundImage: `url("https://gabtor-store-demo.myshopify.com/cdn/shop/files/collection.jpg?v=1662605082")` ,
      
@@ -16,6 +18,8 @@ const AllProducts = () => {
        
       </div>
     </div>
+    <AllProductsTable />
+  </div>
   );
 };
 
