@@ -125,11 +125,13 @@ const AllProductsTable = () => {
 
     return (
         <div className="container w-full ">
-            <div className="flex flex-col-reverse md:flex-row justify-center items-center gap-4 my-4">
-
+            <div className="flex flex-col-reverse md:flex-row justify-between items-center gap-4 my-4">
+                <div className="border border-green-900 px-3 py-2 rounded-none font-semibold hover:bg-green-900 hover:text-white">
+                    <button>Add Products</button>
+                </div>
 
                 {/* Sort Select */}
-                <div className="flex my-2 md:my-10 space-x-4 md:w-4/5 md:justify-center md:items-center md:ml-56">
+                <div className="flex my-2 md:my-10 md:ml-40 space-x-4 ">
                     <button
                         onClick={toggleSortByRating}
                         className={`border border-green-900 px-3 py-2 rounded-none font-semibold ${sortByRating ? "bg-green-900 text-white" : ""
@@ -146,16 +148,16 @@ const AllProductsTable = () => {
                     </button>
                 </div>
 
-                <div className="flex md:w-1/5 md:justify-end relative hover:bg-green-900 hover:text-white">
-                        <input
-                            type="text"
-                            placeholder="Search by title or category..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            className="border border-green-900 px-3 py-2 rounded-none hover:bg-green-900 hover:text-white   w-56 md:w-96 pl-10"
-                        />
-                        <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 hover:bg-green-900 hover:text-white" />
-                  
+                <div className="flex  relative hover:bg-green-900 hover:text-white">
+                    <input
+                        type="text"
+                        placeholder="Search by title or category..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="border border-green-900 px-3 py-2 rounded-none hover:bg-green-900 hover:text-white    pl-10"
+                    />
+                    <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 hover:bg-green-900 hover:text-white" />
+
                 </div>
             </div>
             <Table>
@@ -169,9 +171,9 @@ const AllProductsTable = () => {
                         <TableHead className="text-right">Price</TableHead>
                     </TableRow>
                 </TableHeader>
-                <TableBody className= "">
+                <TableBody className="">
                     {currentData.map((item, index) => (
-                        <TableRow key={item.id} className={`${index %2 === 0 ? "bg-green-50 hover:bg-green-50" : "bg-white"}`}>
+                        <TableRow key={item.id} className={`${index % 2 === 0 ? "bg-green-50 hover:bg-green-50" : "bg-white"}`}>
                             <TableCell className="font-medium">
                                 {indexOfFirstItem + index + 1}
                             </TableCell>
