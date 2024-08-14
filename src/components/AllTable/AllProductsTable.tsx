@@ -1,9 +1,8 @@
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
-    TableFooter,
+    // TableFooter,
     TableHead,
     TableHeader,
     TableRow,
@@ -13,79 +12,95 @@ import {
 
  
  const AllProductsTable = () => {
-    const invoices = [
+     const data = [
         {
-          invoice: "INV001",
-          paymentStatus: "Paid",
-          totalAmount: "$250.00",
-          paymentMethod: "Credit Card",
+            id: 1,
+            imageUrl: "https://gabtor-store-demo.myshopify.com/cdn/shop/products/1_bfa8b69d-29a9-42fa-bb73-cef92fd91d9a.jpg?v=1662541921",
+            title: "Leopard Lily",
+            price: 200,
+            rating: 2.5,
         },
         {
-          invoice: "INV002",
-          paymentStatus: "Pending",
-          totalAmount: "$150.00",
-          paymentMethod: "PayPal",
+            id: 2,
+            imageUrl: "https://gabtor-store-demo.myshopify.com/cdn/shop/products/1_bfa8b69d-29a9-42fa-bb73-cef92fd91d9a.jpg?v=1662541921",
+            title: "Calathea Plant",
+            price: 200,
+            rating: 3.5,
         },
         {
-          invoice: "INV003",
-          paymentStatus: "Unpaid",
-          totalAmount: "$350.00",
-          paymentMethod: "Bank Transfer",
+            id: 3,
+            imageUrl: "https://gabtor-store-demo.myshopify.com/cdn/shop/products/1_bfa8b69d-29a9-42fa-bb73-cef92fd91d9a.jpg?v=1662541921",
+            title: "Spring Plant",
+            price: 200,
+            rating: 5,
         },
         {
-          invoice: "INV004",
-          paymentStatus: "Paid",
-          totalAmount: "$450.00",
-          paymentMethod: "Credit Card",
+            id: 4,
+            imageUrl: "https://gabtor-store-demo.myshopify.com/cdn/shop/products/1_bfa8b69d-29a9-42fa-bb73-cef92fd91d9a.jpg?v=1662541921",
+            title: "Tulip",
+            price: 200,
+            rating: 5,
         },
         {
-          invoice: "INV005",
-          paymentStatus: "Paid",
-          totalAmount: "$550.00",
-          paymentMethod: "PayPal",
+            id: 5,
+            imageUrl: "https://gabtor-store-demo.myshopify.com/cdn/shop/products/1_bfa8b69d-29a9-42fa-bb73-cef92fd91d9a.jpg?v=1662541921",
+            title: "Tulip",
+            price: 200,
+            rating: 5,
         },
         {
-          invoice: "INV006",
-          paymentStatus: "Pending",
-          totalAmount: "$200.00",
-          paymentMethod: "Bank Transfer",
+            id: 6,
+            imageUrl: "https://gabtor-store-demo.myshopify.com/cdn/shop/products/1_bfa8b69d-29a9-42fa-bb73-cef92fd91d9a.jpg?v=1662541921",
+            title: "Tulip",
+            price: 200,
+            rating: 5,
         },
         {
-          invoice: "INV007",
-          paymentStatus: "Unpaid",
-          totalAmount: "$300.00",
-          paymentMethod: "Credit Card",
+            id: 7,
+            imageUrl: "https://gabtor-store-demo.myshopify.com/cdn/shop/products/1_bfa8b69d-29a9-42fa-bb73-cef92fd91d9a.jpg?v=1662541921",
+            title: "Tulip",
+            price: 200,
+            rating: 5,
         },
-      ]
+    ]
 
     return (
         <div className="container w-full ">
              <Table>
       {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
       <TableHeader>
-        <TableRow>
-          <TableHead className="w-[100px]">Invoice</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Method</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
+        <TableRow className="text-center">
+          <TableHead className="w-[100px]"></TableHead>
+          <TableHead >Title</TableHead>
+          <TableHead className="pl-11" >Image</TableHead>
+          <TableHead>Rating</TableHead>
+          <TableHead className="text-right">Price</TableHead>
+        
         </TableRow>
       </TableHeader>
       <TableBody>
-        {invoices.map((invoice) => (
-          <TableRow key={invoice.invoice}>
-            <TableCell className="font-medium">{invoice.invoice}</TableCell>
-            <TableCell>{invoice.paymentStatus}</TableCell>
-            <TableCell>{invoice.paymentMethod}</TableCell>
-            <TableCell className="text-right">{invoice.totalAmount}</TableCell>
+        {data.map((item, index) => (
+          <TableRow key={item.id} className="">
+            <TableCell className="font-medium">{index + 1}</TableCell>
+            <TableCell>{item.title}</TableCell>
+            <TableCell className="">
+              <img
+                src={item.imageUrl}
+                alt={item.title}
+                className="w-24 h-24 object-cover"
+              />
+            </TableCell>
+            <TableCell>{item.rating}</TableCell>
+            <TableCell className="text-right">{item.price}$ </TableCell>
           </TableRow>
         ))}
       </TableBody>
-      <TableFooter>
+      {/* <TableFooter>
         <TableRow>
           <TableCell colSpan={3}>Total</TableCell>
           <TableCell className="text-right">$2,500.00</TableCell>
         </TableRow>
-      </TableFooter>
+      </TableFooter> */}
     </Table>
   
         </div>
