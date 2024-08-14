@@ -169,9 +169,9 @@ const AllProductsTable = () => {
                         <TableHead className="text-right">Price</TableHead>
                     </TableRow>
                 </TableHeader>
-                <TableBody>
+                <TableBody className= "">
                     {currentData.map((item, index) => (
-                        <TableRow key={item.id} className="">
+                        <TableRow key={item.id} className={`${index %2 === 0 ? "bg-green-50 hover:bg-green-50" : "bg-white"}`}>
                             <TableCell className="font-medium">
                                 {indexOfFirstItem + index + 1}
                             </TableCell>
@@ -192,7 +192,7 @@ const AllProductsTable = () => {
                     ))}
                 </TableBody>
             </Table>
-            <div>
+            <div className="my-6 md:my-10">
                 <Pagination>
                     <PaginationContent>
                         <PaginationItem>
