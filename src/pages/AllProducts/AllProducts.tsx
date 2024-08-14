@@ -18,6 +18,7 @@ const AllProducts = () => {
        
       </div>
     </div>
+    
     <AllProductsTable />
   </div>
   );
