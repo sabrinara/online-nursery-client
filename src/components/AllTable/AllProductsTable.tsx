@@ -10,15 +10,15 @@ import {
 import {
     Pagination,
     PaginationContent,
-    PaginationEllipsis,
     PaginationItem,
     PaginationLink,
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination"
 import { useState } from "react";
-import { FaSearch, FaSearchMinus } from "react-icons/fa";
-
+import { FaSearch } from "react-icons/fa";
+import { AiFillDelete } from "react-icons/ai";
+import { CiEdit } from "react-icons/ci";
 
 
 
@@ -168,7 +168,11 @@ const AllProductsTable = () => {
                         <TableHead>Category</TableHead>
                         <TableHead className="pl-11">Image</TableHead>
                         <TableHead>Rating</TableHead>
-                        <TableHead className="text-right">Price</TableHead>
+                      <TableHead >
+                        Delete
+                        </TableHead>
+                        <TableHead >Edit</TableHead>
+                          <TableHead className="text-right">Price</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody className="">
@@ -187,6 +191,12 @@ const AllProductsTable = () => {
                                 />
                             </TableCell>
                             <TableCell>{item.rating}</TableCell>
+                            <TableCell className="">
+                            <AiFillDelete className="text-red-500 "/>
+                            </TableCell>
+                            <TableCell >
+                                <CiEdit></CiEdit>
+                            </TableCell>
                             <TableCell className="text-right">
                                 {item.price}$
                             </TableCell>
