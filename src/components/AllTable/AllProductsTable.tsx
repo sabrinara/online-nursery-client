@@ -26,61 +26,86 @@ const AllProductsTable = () => {
     const data = [
         {
             id: 1,
-            imageUrl: "https://gabtor-store-demo.myshopify.com/cdn/shop/products/1_bfa8b69d-29a9-42fa-bb73-cef92fd91d9a.jpg?v=1662541921",
+            imageUrl: "https://wpbingosite.com/wordpress/flacio/wp-content/uploads/2021/12/banner-10-7.jpg",
             title: "Leopard Lily",
             price: 200,
             rating: 2.5,
             category: "Indoor plant",
+            details: "Leopard Lily is known for its striking spotted leaves and easy maintenance, making it a popular choice for indoor spaces."
         },
         {
             id: 2,
-            imageUrl: "https://gabtor-store-demo.myshopify.com/cdn/shop/products/1_bfa8b69d-29a9-42fa-bb73-cef92fd91d9a.jpg?v=1662541921",
-            title: "Calathea Plant",
+            imageUrl: "https://wpbingosite.com/wordpress/flacio/wp-content/themes/flacio/images/newsletter-image.jpg",
+            title: "Variety Plant",
             price: 28,
             rating: 3.5,
             category: "Indoor plant",
+            details: "This variety plant offers a mix of textures and colors, perfect for adding diversity and vibrancy to any room."
         },
         {
             id: 3,
-            imageUrl: "https://gabtor-store-demo.myshopify.com/cdn/shop/products/1_bfa8b69d-29a9-42fa-bb73-cef92fd91d9a.jpg?v=1662541921",
-            title: "Spring Plant",
+            imageUrl: "https://images.unsplash.com/photo-1584589167171-541ce45f1eea?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            title: "Foliage Plant",
             price: 10,
             rating: 1.55,
-            category: "Indoor plant",
+            category: "Outdoor plant",
+            details: "The Green Foliage plant is admired for its lush, vibrant leaves that add a refreshing, natural touch to any space."
         },
         {
             id: 4,
-            imageUrl: "https://gabtor-store-demo.myshopify.com/cdn/shop/products/1_bfa8b69d-29a9-42fa-bb73-cef92fd91d9a.jpg?v=1662541921",
-            title: "Tulip",
+            imageUrl: "https://gabtor-store-demo.myshopify.com/cdn/shop/files/ba22.jpg?v=1662954220",
+            title: "Grass",
             price: 50,
             rating: 5,
-            category: "Gift plant",
+            category: "Decor plant",
+            details: "Decorative grass brings a touch of nature indoors with its sleek and minimalist design, perfect for modern interiors."
         },
         {
             id: 5,
-            imageUrl: "https://gabtor-store-demo.myshopify.com/cdn/shop/products/1_bfa8b69d-29a9-42fa-bb73-cef92fd91d9a.jpg?v=1662541921",
-            title: "Tulip",
+            imageUrl: "https://wpbingosite.com/wordpress/flacio/wp-content/uploads/2021/12/banner-10-9.jpg",
+            title: "Saccula Plant",
+            category: "Gift plant",
             price: 20,
             rating: 5,
-            category: "Indoor plant",
+            details: "Saculla plants are known for their lush green foliage and are often gifted for their elegance and easy care."
         },
         {
             id: 6,
-            imageUrl: "https://gabtor-store-demo.myshopify.com/cdn/shop/products/1_bfa8b69d-29a9-42fa-bb73-cef92fd91d9a.jpg?v=1662541921",
-            title: "Tulip",
+            imageUrl: "https://gabtor-store-demo.myshopify.com/cdn/shop/files/ba8.png?v=1662622937",
+            title: "Spring Plant",
+            category: "Office Decor plant",
             price: 25,
             rating: 5,
-            category: "Office plant",
+            details: "Spring plants bring a refreshing vibe to office spaces with their bright green leaves and minimal upkeep requirements."
         },
         {
             id: 7,
+            imageUrl: "https://gabtor-store-demo.myshopify.com/cdn/shop/files/ba21.jpg?v=1662954220",
+            title: "Bonsai",
+            price: 40,
+            rating: 1,
+            category: "Indoor plant",
+            details: "Bonsai is the Japanese art of cultivating miniature trees, emphasizing patience, balance, and natural beauty."
+        },
+        {
+            id: 8,
+            imageUrl: "https://images.unsplash.com/photo-1578687595593-31fafb682273?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            title: "Westwood Gardens succulents",
+            price: 40,
+            rating: 1,
+            category: "Outdoor plant",
+            details: "Westwood Gardens succulents are known for their hardy, low-maintenance plants that thrive in various environments. They are perfect for beginners and seasoned gardeners."
+        },
+        {
+            id: 9,
             imageUrl: "https://gabtor-store-demo.myshopify.com/cdn/shop/products/1_bfa8b69d-29a9-42fa-bb73-cef92fd91d9a.jpg?v=1662541921",
             title: "Tulip",
             price: 40,
             rating: 1,
             category: "Outdoor plant",
-        },
-    ]
+            details: "Tulip flowers are a favorite choice for gardeners, offering bright colors and graceful shapes that enhance outdoor spaces."
+        }
+    ];
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [sortByRating, setSortByRating] = useState<boolean>(false);
@@ -124,7 +149,7 @@ const AllProductsTable = () => {
     };
 
     return (
-        <div className="container w-full ">
+        <div className="container w-full">
             <div className="flex flex-col-reverse md:flex-row justify-between items-center gap-4 my-4">
                 <div className="border border-green-900 px-3 py-2 rounded-none font-semibold hover:bg-green-900 hover:text-white">
                     <button>Add Products</button>
@@ -192,7 +217,7 @@ const AllProductsTable = () => {
                             </TableCell>
                             <TableCell>{item.rating}</TableCell>
                             <TableCell className="">
-                            <AiFillDelete className="text-red-500 "/>
+                            <AiFillDelete className="text-red-600 "/>
                             </TableCell>
                             <TableCell >
                                 <CiEdit></CiEdit>

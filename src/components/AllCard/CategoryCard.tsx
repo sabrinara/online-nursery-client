@@ -50,7 +50,7 @@ const CategoryCard = () => {
         {
             id: 7,
             imageUrl: "https://gabtor-store-demo.myshopify.com/cdn/shop/files/ba21.jpg?v=1662954220",
-            title: "Bonsie",
+            title: "Bonsai",
             category: "Indoor plant",
             rating: 5,
         },
