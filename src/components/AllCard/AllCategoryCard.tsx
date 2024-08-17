@@ -1,8 +1,9 @@
-import { VscOpenPreview } from "react-icons/vsc";
 import { FaArrowRight, FaRegHeart } from "react-icons/fa";
 import { IoCartOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
-const ProductCard = () => {
+import { VscOpenPreview } from "react-icons/vsc";
+
+
+const AllCategoryCard = () => {
     const data = [
         {
             id: 1,
@@ -87,43 +88,43 @@ const ProductCard = () => {
         }
     ];
     return (
-        <div className="my-10">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-                {data.slice(0, 7).map((item) => (
-                    <div className="rounded-2xl mb-5 " key={item.id}>
+       <div className="mt-10 mx-6">
+         <div className="grid grid-cols-1 md:grid-cols-3 gap-2 ">
+              {data.map((item) => (
+                    <div className="rounded-2xl mb-5 flex gap-2  bg-green-50 " key={item.id}>
                         <div className="relative group bg-orange-50">
-                            <img src={item.imageUrl} alt={item.title} className="w-full h-80 " />
+                            <img src={item.imageUrl} alt={item.title} className="w-56 h-60 rounded-l-2xl" />
                             <div className="absolute inset-0 flex items-center justify-center gap-4 top-3/4 bg-green-200 bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 {/* <FaRegHeart className="text-2xl hover:bg-green-800 hover:text-white hover:rounded-full hover:p-[7px] " title="Add To Rating"/> */}
                                 < VscOpenPreview className="text-2xl hover:bg-green-800 hover:text-white hover:rounded-full hover:p-[7px] " title="View Details" />
                                 <IoCartOutline className="text-2xl hover:bg-green-800 hover:text-white hover:rounded-full hover:p-[7px] " title="Add To Cart" />
                             </div>
-                            <div className="absolute flex items-center justify-center gap-1 top-4 right-4 ">
+                            {/* <div className="absolute flex items-center justify-center gap-1 top-4 right-4 ">
                                 <FaRegHeart className="text-center text-xl mt-1" />
                                 <h5 className="text-xl font-semibold">{item.rating}</h5>
-                            </div>
+                            </div> */}
                         </div>
-                        <h3 className="text-center mt-4 font-bold text-black text-lg">{item.title}</h3>
-                        <p className="text-center font-bold  text-md  text-green-700">$ {item.price}</p>
+                      <div className="flex flex-col   text-start">
+                        <h1 className=" mt-4 font-bold text-green-950 text-2xl mr-2">{item.category}</h1>
+                      <h3 className=" my-1 font-bold text-black text-lg">{item.title}</h3>
+                      <p className=" font-bold  text-md  text-green-700">$ {item.price}</p>
+                      <div className="flex  gap-1 items-center">
+                                <FaRegHeart className=" text-xl mt-1" />
+                                <h5 className="text-xl font-semibold">{item.rating}</h5>
+                            </div>
+                      <button>
+                      <IoCartOutline className= "text-2xl " title="Add To Cart" />
+                      </button>
+
+                      {/* view details button */}
+                      <button className="bg-green-900 text-white px-2 py-1 rounded mt-2 hover:bg-green-800 w-32">View Details</button>
+
+                      </div>
                     </div>
                 ))}
-
-                   <Link to={"/allproducts"} >
-                   <div className="flex items-center justify-center gap-4 my-20 md:my-0 md:mt-28 hover:animate-wobble ">
-                        <button className="relative flex items-center justify-center border-2 border-green-800 text-green-900  px-6 py-3 rounded-full w-20 h-20 bg-white shadow-lg transition duration-300">
-
-
-                        </button>
-                        <h1 className="absolute font-semibold text-xl  ml-6 mr-4 bg-white py-1">
-                            View More Products
-                        </h1>
-                        <FaArrowRight className="  text-green-900 text-lg mt-1 ml-36" />
-                    </div>
-                   </Link>
-                
-            </div>
         </div>
+       </div>
     );
 };
 
-export default ProductCard;
+export default AllCategoryCard;

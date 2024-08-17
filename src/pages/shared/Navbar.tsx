@@ -25,6 +25,11 @@ export default function Navbar() {
     },
     {
       id: 3,
+      name: "Categories",
+      path: "/allcategories",
+    },
+    {
+      id: 3,
       name: "About",
       path: "/about",
     },
@@ -42,14 +47,14 @@ export default function Navbar() {
 
   return (
     <div className="mx-auto container">
-      <div className="flex flex-wrap items-center justify-between border-b-2 lg:p-0">
+      <div className="flex  items-center justify-between border-b-2 lg:p-0 gap-2">
         <Link to="/" className="flex items-center">
           <img src={Logo} alt="Logo" className="h-14 md:h-20 mt-2" />
         </Link>
 
         {/* large and medium screens */}
-        <NavigationMenu className="hidden sm:block">
-          <NavigationMenuList className="flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-4">
+        <NavigationMenu className="hidden md:flex">
+          <NavigationMenuList className="flex ">
             {data.map((item) => (
               <NavigationMenuItem key={item.id}>
                 <Link to={item.path}>
@@ -65,7 +70,7 @@ export default function Navbar() {
         </NavigationMenu>
 
         {/*  small devices */}
-        <div className="sm:hidden">
+        <div className="md:hidden">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button className="p-2">

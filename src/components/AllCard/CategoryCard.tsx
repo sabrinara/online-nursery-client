@@ -1,5 +1,6 @@
 
 import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 
 const CategoryCard = () => {
@@ -25,7 +26,6 @@ const CategoryCard = () => {
             category: "Home Decore plant",
             rating: 5,
         },
-      
         {
             id: 4,
             imageUrl: "https://gabtor-store-demo.myshopify.com/cdn/shop/files/ba22.jpg?v=1662954220",
@@ -57,7 +57,7 @@ const CategoryCard = () => {
     ]
     return (
         <div className="my-10 md:my-28">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
                 {data.slice(0, 7).map((item, index) => (
                     <div className={`rounded-2xl mb-5 ${index % 2 === 0 ? 'translate-y-0 md:translate-y-10' : 'translate-y-0 md:-translate-y-10'}`}
                         key={item.id}>
@@ -73,8 +73,8 @@ const CategoryCard = () => {
 
                     </div>
                 ))}
-                <div>
-                    <div className="flex items-center justify-center gap-4 my-20 md:my-0 md:mt-28 hover:animate-wobble">
+                <Link to={"/allcategories"}>
+                <div className="flex items-center justify-center gap-4 my-20 md:my-0 md:mt-44 hover:animate-wobble">
                         <button className="relative flex items-center justify-center border-2 border-green-800 text-green-900  px-6 py-3 rounded-ss w-20 h-20 bg-white shadow-lg transition duration-300">
 
 
@@ -84,7 +84,7 @@ const CategoryCard = () => {
                         </h1>
                         <FaArrowRight className="  text-green-900 text-lg mt-1 ml-36" />
                     </div>
-                </div>
+                </Link>
             </div>
         </div>
 

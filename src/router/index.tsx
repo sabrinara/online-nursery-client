@@ -1,4 +1,5 @@
 import MainLayout from "@/components/Layouts/MainLayouts";
+import AllCategories from "@/pages/AllCategories/AllCategories";
 import AllProducts from "@/pages/AllProducts/AllProducts";
 import Home from "@/pages/Home/Home";
 import PrivacyPolicy from "@/pages/PrivacyPolicy/PrivacyPolicy";
@@ -20,8 +21,8 @@ const router = createBrowserRouter([
         element: <AllProducts />,
       },
       {
-        path: "/allcategory",
-        element: <Home />,
+        path: "/allcategories",
+        element: <AllCategories />,
       },
       {
         path: "/privacypolicy",
