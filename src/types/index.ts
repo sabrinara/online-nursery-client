@@ -1,14 +1,18 @@
-export type TMovie = {
+export type TProducts = {
   _id: string;
   title: string;
   description: string;
-  releaseDate: Date;
-  genre: string;
-  director: string;
-  cast: string;
-  slug: string;
-  viewCount: number;
-  totalRating: number;
-  isDeleted: boolean;
-  image: string;
+  rating: number;
+  isStock: boolean;
+  imageUrl: string;
+  quantity: number;
+  price: number;
+  category: string;
+};
+
+export type TCategories = {
+  _id: string;
+  name: string;
+  imageUrl: string;
+  description: string;
 };

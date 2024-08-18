@@ -1,5 +1,4 @@
 import AllProductsTable from "@/components/AllTable/AllProductsTable";
-import { Button } from "@/components/ui/button";
 
 const AllProducts = () => {
   return (

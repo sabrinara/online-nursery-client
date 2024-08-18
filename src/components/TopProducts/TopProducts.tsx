@@ -1,7 +1,20 @@
+import { useGetProductsQuery } from "@/redux/api/api";
 import ProductCard from "../AllCard/ProductCard";
 
 
 const TopProducts = () => {
+    const {data , isLoading} = useGetProductsQuery([]);
+
+    if (isLoading) {
+        return (
+          <p className="text-4xl text-yellow-500 flex justify-center items-center">
+            Loading...
+          </p>
+        );
+      }
+    console.log(data);
+
+    const { data: products } = data ;
     return (
         <div className="my-10 md:my-16">
             <div>
@@ -10,7 +23,7 @@ const TopProducts = () => {
             <hr className="border-2 border-green-600 w-5/12 md:w-1/12 mx-auto"/>
             </div>
 
-            <ProductCard />
+            <ProductCard products={products}/>
         </div>
     );
 };

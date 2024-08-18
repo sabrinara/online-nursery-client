@@ -3,6 +3,7 @@ import CategoryCard from '../AllCard/CategoryCard';
 
 const HomeCategory = () => {
     return (
+        
         <div className="my-10 md:my-16">
         <div>
         <h2 className="text-2xl md:text-4xl font-bold my-4 text-center ">Some Propular <span className="text-green-600">Categories</span></h2>
