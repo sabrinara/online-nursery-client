@@ -22,121 +22,37 @@ import { CiEdit } from "react-icons/ci";
 import { Link, useNavigate } from "react-router-dom";
 import { VscOpenPreview } from "react-icons/vsc";
 import { IoCartOutline } from "react-icons/io5";
+import { useGetProductsQuery } from "@/redux/api/api";
 
 
 
 const AllProductsTable = () => {
-    const data = [
-        {
-            id: 1,
-            imageUrl: "https://wpbingosite.com/wordpress/flacio/wp-content/uploads/2021/12/banner-10-7.jpg",
-            title: "Leopard Lily",
-            price: 200,
-            rating: 2.5,
-            quantity: 4, 
-            category: "Indoor plant",
-            details: "Leopard Lily is known for its striking spotted leaves and easy maintenance, making it a popular choice for indoor spaces."
-        },
-        {
-            id: 2,
-            imageUrl: "https://wpbingosite.com/wordpress/flacio/wp-content/themes/flacio/images/newsletter-image.jpg",
-            title: "Variety Plant",
-            price: 28,
-            rating: 3.5,
-            quantity: 4,
-            category: "Indoor plant",
-            details: "This variety plant offers a mix of textures and colors, perfect for adding diversity and vibrancy to any room."
-        },
-        {
-            id: 3,
-            imageUrl: "https://images.unsplash.com/photo-1584589167171-541ce45f1eea?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            title: "Foliage Plant",
-            price: 10,
-            rating: 1.3,
-            quantity: 2,
-            category: "Outdoor plant",
-            details: "The Green Foliage plant is admired for its lush, vibrant leaves that add a refreshing, natural touch to any space."
-        },
-        {
-            id: 4,
-            imageUrl: "https://gabtor-store-demo.myshopify.com/cdn/shop/files/ba22.jpg?v=1662954220",
-            title: "Grass",
-            price: 50,
-            rating: 5,
-            quantity: 4,
-            category: "Decor plant",
-            details: "Decorative grass brings a touch of nature indoors with its sleek and minimalist design, perfect for modern interiors."
-        },
-        {
-            id: 5,
-            imageUrl: "https://wpbingosite.com/wordpress/flacio/wp-content/uploads/2021/12/banner-10-9.jpg",
-            title: "Saccula Plant",
-            category: "Gift plant",
-            price: 20,
-            rating: 5,
-            quantity: 4,
-            details: "Saculla plants are known for their lush green foliage and are often gifted for their elegance and easy care."
-        },
-        {
-            id: 6,
-            imageUrl: "https://gabtor-store-demo.myshopify.com/cdn/shop/files/ba8.png?v=1662622937",
-            title: "Spring Plant",
-            category: "Office Decor plant",
-            price: 25,
-            rating: 5,
-            quantity: 4,
-            details: "Spring plants bring a refreshing vibe to office spaces with their bright green leaves and minimal upkeep requirements."
-        },
-        {
-            id: 7,
-            imageUrl: "https://gabtor-store-demo.myshopify.com/cdn/shop/files/ba21.jpg?v=1662954220",
-            title: "Bonsai",
-            price: 40,
-            rating: 1,
-            quantity: 4,
-            category: "Indoor plant",
-            details: "Bonsai is the Japanese art of cultivating miniature trees, emphasizing patience, balance, and natural beauty."
-        },
-        {
-            id: 8,
-            imageUrl: "https://images.unsplash.com/photo-1578687595593-31fafb682273?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            title: "Westwood Gardens succulents",
-            price: 40,
-            rating: 1,
-            quantity: 4,
-            category: "Outdoor plant",
-            details: "Westwood Gardens succulents are known for their hardy, low-maintenance plants that thrive in various environments. They are perfect for beginners and seasoned gardeners."
-        },
-        {
-            id: 9,
-            imageUrl: "https://gabtor-store-demo.myshopify.com/cdn/shop/products/1_bfa8b69d-29a9-42fa-bb73-cef92fd91d9a.jpg?v=1662541921",
-            title: "Tulip",
-            price: 40,
-            rating: 1,
-            quantity: 4,
-            category: "Outdoor plant",
-            details: "Tulip flowers are a favorite choice for gardeners, offering bright colors and graceful shapes that enhance outdoor spaces."
-        }
-    ];
+    const { data, isLoading } = useGetProductsQuery({});
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [sortByRating, setSortByRating] = useState<boolean>(false);
     const [sortByPrice, setSortByPrice] = useState<boolean>(false);
     const [cart, setCart] = useState([])
     const navigate = useNavigate();
-
+    
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
+    console.log(data);
+    const { data: product } = data;
+    console.log(product);
     const itemsPerPage = 5;
 
-    const handleAddToCart = (product ) => {
+    const handleAddToCart = (product : TProducts) => {
         // Check if the item is already in the cart
-        const existingItem = cart.find((item) => item.id === product.id);
+        const existingItem = cart.find((item) => item._id === product._id);
 
         if (existingItem) {
             // If item already exists and has available quantity, increment the quantity
             if (existingItem.quantity < product.quntity) {
                 setCart((prevCart) =>
                     prevCart.map((item) =>
-                        item.id === product.id
+                        item._id === product._id
                             ? { ...item, quantity: item.quantity + 1 }
                             : item
                     )
@@ -150,14 +66,14 @@ const AllProductsTable = () => {
     };
 
     const isOutOfStock = (product) => {
-        const existingItem = cart.find((item) => item.id === product.id);
+        const existingItem = cart.find((item) => item._id === product._id);
         return existingItem && existingItem.quantity >= product.quntity;
     };
 
 
 
     // Filter the data based on search term (title and category)
-    const filteredData = data.filter(
+    const filteredData = product?.filter(
         (item) =>
             item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
             item.category.toLowerCase().includes(searchTerm.toLowerCase())
@@ -170,7 +86,7 @@ const AllProductsTable = () => {
         } else if (sortByRating) {
             return b.rating - a.rating;
         } else if (sortByPrice) {
-            return b.price - a.price;
+            return a.price - b.price;
         }
         return 0; // No sorting if no criteria is selected
     });

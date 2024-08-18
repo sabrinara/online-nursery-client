@@ -32,7 +32,7 @@ const Footer = () => {
                             <a href="/allproducts" className="link link-hover">
                                 All Products
                             </a>
-                            <a href="/allcategory" className="link link-hover">
+                            <a href="/allcategories" className="link link-hover">
                                 All Categories
                             </a>
 

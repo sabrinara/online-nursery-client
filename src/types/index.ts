@@ -16,3 +16,23 @@ export type TCategories = {
   imageUrl: string;
   description: string;
 };
+
+export type TOrders = {
+  _id: string;
+  title: string;
+  imageUrl: string;
+  quantity: number;
+  category: string;
+  name: string;
+  email: string;
+  userImage: string;
+  totalPrice: number;
+  phoneNumber: number;
+  address: string;
+  company: string;
+  postCode: number;
+  city: string;
+  country: string;
+  StripePayment: boolean;
+  CashOnDelivery: boolean;
+}
