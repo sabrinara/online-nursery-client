@@ -92,10 +92,14 @@ const ProductCard = () => {
                 {data.slice(0, 7).map((item) => (
                     <div className="rounded-2xl mb-5 " key={item.id}>
                         <div className="relative group bg-orange-50">
+                            <Link to={`/allproducts/${item.id}`}>
                             <img src={item.imageUrl} alt={item.title} className="w-full h-80 " />
+                            </Link>
                             <div className="absolute inset-0 flex items-center justify-center gap-4 top-3/4 bg-green-200 bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 {/* <FaRegHeart className="text-2xl hover:bg-green-800 hover:text-white hover:rounded-full hover:p-[7px] " title="Add To Rating"/> */}
-                                < VscOpenPreview className="text-2xl hover:bg-green-800 hover:text-white hover:rounded-full hover:p-[7px] " title="View Details" />
+                               <Link to={`/allproducts/${item.id}`}>
+                               < VscOpenPreview className="text-2xl hover:bg-green-800 hover:text-white hover:rounded-full hover:p-[7px] " title="View Details" />
+                               </Link>
                                 <IoCartOutline className="text-2xl hover:bg-green-800 hover:text-white hover:rounded-full hover:p-[7px] " title="Add To Cart" />
                             </div>
                             <div className="absolute flex items-center justify-center gap-1 top-4 right-4 ">

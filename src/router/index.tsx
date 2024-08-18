@@ -1,6 +1,9 @@
 import MainLayout from "@/components/Layouts/MainLayouts";
 import AllCategories from "@/pages/AllCategories/AllCategories";
 import AllProducts from "@/pages/AllProducts/AllProducts";
+import ProductDetail from "@/pages/AllProducts/ProductDetail";
+import CartCheckout from "@/pages/CartPayment/CartCheckout";
+import Payment from "@/pages/CartPayment/Payment";
 import Home from "@/pages/Home/Home";
 import PrivacyPolicy from "@/pages/PrivacyPolicy/PrivacyPolicy";
 import TermsCondition from "@/pages/TermsCondition/TermsCondition";
@@ -21,8 +24,20 @@ const router = createBrowserRouter([
         element: <AllProducts />,
       },
       {
+        path: "/allproducts/:id",
+        element: <ProductDetail />,
+      },
+      {
         path: "/allcategories",
         element: <AllCategories />,
+      },
+      {
+        path: "/cart",
+        element: <CartCheckout  />,
+      },
+      {
+        path: "/payments",
+        element: <Payment />,
       },
       {
         path: "/privacypolicy",

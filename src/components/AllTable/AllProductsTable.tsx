@@ -19,6 +19,9 @@ import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import { CiEdit } from "react-icons/ci";
+import { Link, useNavigate } from "react-router-dom";
+import { VscOpenPreview } from "react-icons/vsc";
+import { IoCartOutline } from "react-icons/io5";
 
 
 
@@ -30,6 +33,7 @@ const AllProductsTable = () => {
             title: "Leopard Lily",
             price: 200,
             rating: 2.5,
+            quantity: 4, 
             category: "Indoor plant",
             details: "Leopard Lily is known for its striking spotted leaves and easy maintenance, making it a popular choice for indoor spaces."
         },
@@ -39,6 +43,7 @@ const AllProductsTable = () => {
             title: "Variety Plant",
             price: 28,
             rating: 3.5,
+            quantity: 4,
             category: "Indoor plant",
             details: "This variety plant offers a mix of textures and colors, perfect for adding diversity and vibrancy to any room."
         },
@@ -47,7 +52,8 @@ const AllProductsTable = () => {
             imageUrl: "https://images.unsplash.com/photo-1584589167171-541ce45f1eea?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             title: "Foliage Plant",
             price: 10,
-            rating: 1.55,
+            rating: 1.3,
+            quantity: 2,
             category: "Outdoor plant",
             details: "The Green Foliage plant is admired for its lush, vibrant leaves that add a refreshing, natural touch to any space."
         },
@@ -57,6 +63,7 @@ const AllProductsTable = () => {
             title: "Grass",
             price: 50,
             rating: 5,
+            quantity: 4,
             category: "Decor plant",
             details: "Decorative grass brings a touch of nature indoors with its sleek and minimalist design, perfect for modern interiors."
         },
@@ -67,6 +74,7 @@ const AllProductsTable = () => {
             category: "Gift plant",
             price: 20,
             rating: 5,
+            quantity: 4,
             details: "Saculla plants are known for their lush green foliage and are often gifted for their elegance and easy care."
         },
         {
@@ -76,6 +84,7 @@ const AllProductsTable = () => {
             category: "Office Decor plant",
             price: 25,
             rating: 5,
+            quantity: 4,
             details: "Spring plants bring a refreshing vibe to office spaces with their bright green leaves and minimal upkeep requirements."
         },
         {
@@ -84,6 +93,7 @@ const AllProductsTable = () => {
             title: "Bonsai",
             price: 40,
             rating: 1,
+            quantity: 4,
             category: "Indoor plant",
             details: "Bonsai is the Japanese art of cultivating miniature trees, emphasizing patience, balance, and natural beauty."
         },
@@ -93,6 +103,7 @@ const AllProductsTable = () => {
             title: "Westwood Gardens succulents",
             price: 40,
             rating: 1,
+            quantity: 4,
             category: "Outdoor plant",
             details: "Westwood Gardens succulents are known for their hardy, low-maintenance plants that thrive in various environments. They are perfect for beginners and seasoned gardeners."
         },
@@ -102,6 +113,7 @@ const AllProductsTable = () => {
             title: "Tulip",
             price: 40,
             rating: 1,
+            quantity: 4,
             category: "Outdoor plant",
             details: "Tulip flowers are a favorite choice for gardeners, offering bright colors and graceful shapes that enhance outdoor spaces."
         }
@@ -110,8 +122,39 @@ const AllProductsTable = () => {
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [sortByRating, setSortByRating] = useState<boolean>(false);
     const [sortByPrice, setSortByPrice] = useState<boolean>(false);
+    const [cart, setCart] = useState([])
+    const navigate = useNavigate();
 
     const itemsPerPage = 5;
+
+    const handleAddToCart = (product ) => {
+        // Check if the item is already in the cart
+        const existingItem = cart.find((item) => item.id === product.id);
+
+        if (existingItem) {
+            // If item already exists and has available quantity, increment the quantity
+            if (existingItem.quantity < product.quntity) {
+                setCart((prevCart) =>
+                    prevCart.map((item) =>
+                        item.id === product.id
+                            ? { ...item, quantity: item.quantity + 1 }
+                            : item
+                    )
+                );
+            }
+            navigate("/cart");
+        } else {
+            // If item is not in the cart, add it with initial quantity 1
+            setCart((prevCart) => [...prevCart, { ...product, quantity: 1 }]);
+        }
+    };
+
+    const isOutOfStock = (product) => {
+        const existingItem = cart.find((item) => item.id === product.id);
+        return existingItem && existingItem.quantity >= product.quntity;
+    };
+
+
 
     // Filter the data based on search term (title and category)
     const filteredData = data.filter(
@@ -193,11 +236,14 @@ const AllProductsTable = () => {
                         <TableHead>Category</TableHead>
                         <TableHead className="pl-11">Image</TableHead>
                         <TableHead>Rating</TableHead>
-                      <TableHead >
-                        Delete
+                        <TableHead> Details </TableHead>
+                        <TableHead >
+                            Delete
                         </TableHead>
                         <TableHead >Edit</TableHead>
-                          <TableHead className="text-right">Price</TableHead>
+                        <TableHead >Cart</TableHead>
+                        <TableHead className="text-right">Price</TableHead>
+
                     </TableRow>
                 </TableHeader>
                 <TableBody className="">
@@ -209,22 +255,40 @@ const AllProductsTable = () => {
                             <TableCell>{item.title}</TableCell>
                             <TableCell>{item.category}</TableCell>
                             <TableCell className="">
-                                <img
-                                    src={item.imageUrl}
-                                    alt={item.title}
-                                    className="w-24 h-24 object-cover"
-                                />
+                                <Link to={`/allproducts/${item.id}`}>
+                                    <img
+                                        src={item.imageUrl}
+                                        alt={item.title}
+                                        className="w-24 h-24 object-cover"
+                                    />
+                                </Link>
                             </TableCell>
                             <TableCell>{item.rating}</TableCell>
+                            <TableCell>
+                                <Link to={`/allproducts/${item.id}`}>
+                                    < VscOpenPreview className="text-xl  " title="View Details" />
+                                </Link>
+                            </TableCell>
                             <TableCell className="">
-                            <AiFillDelete className="text-red-600 "/>
+                                <AiFillDelete className="text-red-600 text-xl" />
                             </TableCell>
                             <TableCell >
-                                <CiEdit></CiEdit>
+                                <CiEdit className="text-green-950 text-xl"></CiEdit>
+                            </TableCell>
+                            <TableCell>
+                                <button
+                                    onClick={() => handleAddToCart(item)}
+                                    disabled={isOutOfStock(item)}
+                                    className={`text-xl ${isOutOfStock(item) ? "text-gray-400 cursor-not-allowed" : "text-green-600"}`}
+                                    title={isOutOfStock(item) ? "Out of Stock" : "Add to Cart"}
+                                >
+                                    <IoCartOutline />
+                                </button>
                             </TableCell>
                             <TableCell className="text-right">
                                 {item.price}$
                             </TableCell>
+
                         </TableRow>
                     ))}
                 </TableBody>
