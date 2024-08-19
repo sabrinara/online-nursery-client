@@ -22,13 +22,14 @@ import { CiEdit } from "react-icons/ci";
 import { Link, useNavigate } from "react-router-dom";
 import { VscOpenPreview } from "react-icons/vsc";
 import { IoCartOutline } from "react-icons/io5";
-import { useGetProductsQuery } from "@/redux/api/api";
+import { useDeleteProductMutation, useGetProductsQuery } from "@/redux/api/api";
 import { TProducts } from "@/types";
-
+import Swal from 'sweetalert2';
 
 
 const AllProductsTable = () => {
     const { data, isLoading } = useGetProductsQuery({});
+    const [ deleteProduct] = useDeleteProductMutation();
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [sortByRating, setSortByRating] = useState<boolean>(false);
@@ -66,7 +67,7 @@ const AllProductsTable = () => {
         }
     };
 
-    const isOutOfStock = (product) => {
+    const isOutOfStock = (product : TProducts) => {
         const existingItem = cart.find((item) => item._id === product._id);
         return existingItem && existingItem.quantity >= product.quntity;
     };
@@ -107,6 +108,36 @@ const AllProductsTable = () => {
     const toggleSortByPrice = () => {
         setSortByPrice((prev) => !prev);
     };
+
+    const handleDeleteProduct = (_id: string) => {
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+            try {
+              const response = await deleteProduct(_id).unwrap(); 
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your product has been deleted.",
+                icon: "success"
+              });
+            } catch (error) {
+              console.error("Error deleting product:", error);
+              Swal.fire({
+                title: "Error!",
+                text: "There was an issue deleting your product.",
+                icon: "error"
+              });
+            }
+          }
+        });
+      };
 
     return (
         <div className="container w-full">
@@ -189,7 +220,9 @@ const AllProductsTable = () => {
                                 </Link>
                             </TableCell>
                             <TableCell className="">
-                                <AiFillDelete className="text-red-600 text-xl" />
+                               <button onClick={() => handleDeleteProduct(item._id)}>
+                               <AiFillDelete className="text-red-600 text-xl" />
+                               </button>
                             </TableCell>
                             <TableCell >
                                 <CiEdit className="text-green-950 text-xl"></CiEdit>
