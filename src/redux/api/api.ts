@@ -13,6 +13,22 @@ export const baseApi = createApi({
       }),
       providesTags: ["products"],
     }),
+    addProduct: builder.mutation({
+      query: (data) => {
+        console.log(data);
+        return {
+          method: "POST",
+          url: "/products/create-product",
+          body: data,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+      },
+      invalidatesTags: ["products"],
+    }),
+    
+    
     getCategories: builder.query ({
       query: () => ({
         method : "GET",
@@ -30,4 +46,4 @@ export const baseApi = createApi({
   }),
 });
 
-export const { useGetProductsQuery, useGetCategoriesQuery ,useGetOrdersQuery } = baseApi;
+export const { useGetProductsQuery,useAddProductMutation, useGetCategoriesQuery ,useGetOrdersQuery } = baseApi;

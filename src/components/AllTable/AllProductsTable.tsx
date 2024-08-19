@@ -23,6 +23,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { VscOpenPreview } from "react-icons/vsc";
 import { IoCartOutline } from "react-icons/io5";
 import { useGetProductsQuery } from "@/redux/api/api";
+import { TProducts } from "@/types";
 
 
 
@@ -74,7 +75,7 @@ const AllProductsTable = () => {
 
     // Filter the data based on search term (title and category)
     const filteredData = product?.filter(
-        (item) =>
+        (item : TProducts) =>
             item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
             item.category.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -96,7 +97,7 @@ const AllProductsTable = () => {
     const currentData = sortedData.slice(indexOfFirstItem, indexOfLastItem);
     const totalPages = Math.ceil(sortedData.length / itemsPerPage);
 
-    const handleClick = (pageNumber) => {
+    const handleClick = (pageNumber : number) => {
         setCurrentPage(pageNumber);
     };
     const toggleSortByRating = () => {
@@ -110,9 +111,11 @@ const AllProductsTable = () => {
     return (
         <div className="container w-full">
             <div className="flex flex-col-reverse md:flex-row justify-between items-center gap-4 my-4">
-                <div className="border border-green-900 px-3 py-2 rounded-none font-semibold hover:bg-green-900 hover:text-white">
+              <Link to="/addproduct">
+              <div className="border border-green-900 px-3 py-2 rounded-none font-semibold hover:bg-green-900 hover:text-white">
                     <button>Add Products</button>
                 </div>
+              </Link>
 
                 {/* Sort Select */}
                 <div className="flex my-2 md:my-10 md:ml-40 space-x-4 ">

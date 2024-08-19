@@ -1,5 +1,6 @@
 import MainLayout from "@/components/Layouts/MainLayouts";
 import AllCategories from "@/pages/AllCategories/AllCategories";
+import AddProducts from "@/pages/AllProducts/AddProducts";
 import AllProducts from "@/pages/AllProducts/AllProducts";
 import ProductDetail from "@/pages/AllProducts/ProductDetail";
 import CartCheckout from "@/pages/CartPayment/CartCheckout";
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "/allproducts",
         element: <AllProducts />,
+      },
+      {
+        path: "/addproduct",
+        element: <AddProducts />,
       },
       {
         path: "/allproducts/:id",
