@@ -138,7 +138,7 @@ const AddProducts = () => {
 
   return (
     <div
-      className="relative w-full h-[140vh] bg-no-repeat bg-center bg-cover"
+      className="relative w-full h-[100vh] bg-no-repeat bg-center bg-cover"
       style={{
         backgroundImage: `url("./public/b.jpg")`,
       }}
@@ -180,13 +180,14 @@ const AddProducts = () => {
                     required
                   />
                 </div>
-                <div className="flex flex-col space-y-1.5 text-green-50">
+               <div className="grid grid-cols-3 gap-4">
+               <div className="flex flex-col space-y-1.5 text-green-50">
                   <Label htmlFor="price">Price</Label>
                   <Input
                     className="text-green-950"
                     type="number"
                     id="price"
-                    placeholder="Write the product price"
+                    placeholder="Product price"
                     value={formData.price}
                     onChange={handleInputChange}
                     required
@@ -198,7 +199,7 @@ const AddProducts = () => {
                     className="text-green-950"
                     type="number"
                     id="quantity"
-                    placeholder="Write the product quantity"
+                    placeholder="Product quantity"
                     value={formData.quantity}
                     onChange={handleInputChange}
                     required
@@ -210,13 +211,15 @@ const AddProducts = () => {
                     className="text-green-950"
                     type="number"
                     id="rating"
-                    placeholder="Write the product rating"
+                    placeholder="Product rating"
                     value={formData.rating}
                     onChange={handleInputChange}
                     required
                   />
                 </div>
-                <div className="flex flex-col space-y-1.5 text-green-50">
+               </div>
+              <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col space-y-1.5 text-green-50">
                   <Label htmlFor="imageUrl">Image</Label>
                   <Input
                     className="text-green-950"
@@ -244,13 +247,14 @@ const AddProducts = () => {
                   </Select>
                 </div>
               </div>
-              <CardFooter className="flex justify-between mt-4">
+              </div>
+              <CardFooter className="flex justify-between items-center mt-6 -mr-6 -ml-6">
                 <Button variant="outline" type="button">
                   Cancel
                 </Button>
                 <Button
                   type="submit"
-                  className="bg-green-950"
+                  className="bg-green-900"
                   disabled={uploading}
                 >
                   {uploading ? "Saving..." : "Save"}

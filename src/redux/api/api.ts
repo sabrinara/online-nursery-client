@@ -27,6 +27,17 @@ export const baseApi = createApi({
       },
       invalidatesTags: ["products"],
     }),
+    updateProduct: builder.mutation({
+      query: ({ id, data }) => ({
+        method: "PATCH",
+        url: `/products/${id}`,
+        body: data,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }),
+      invalidatesTags: ["products"],
+    }),
     deleteProduct: builder.mutation({
       query: (id) => ({
         method: "DELETE",
@@ -53,4 +64,4 @@ export const baseApi = createApi({
   }),
 });
 
-export const { useGetProductsQuery,useAddProductMutation, useDeleteProductMutation, useGetCategoriesQuery ,useGetOrdersQuery } = baseApi;
+export const { useGetProductsQuery,useAddProductMutation, useUpdateProductMutation, useDeleteProductMutation, useGetCategoriesQuery ,useGetOrdersQuery } = baseApi;

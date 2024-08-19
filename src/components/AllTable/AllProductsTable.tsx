@@ -14,7 +14,27 @@ import {
     PaginationLink,
     PaginationNext,
     PaginationPrevious,
-} from "@/components/ui/pagination"
+} from "@/components/ui/pagination";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button"
+import {
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
@@ -22,30 +42,144 @@ import { CiEdit } from "react-icons/ci";
 import { Link, useNavigate } from "react-router-dom";
 import { VscOpenPreview } from "react-icons/vsc";
 import { IoCartOutline } from "react-icons/io5";
-import { useDeleteProductMutation, useGetProductsQuery } from "@/redux/api/api";
-import { TProducts } from "@/types";
+import { useDeleteProductMutation, useGetCategoriesQuery, useGetProductsQuery, useUpdateProductMutation } from "@/redux/api/api";
+import { TCategories, TProducts } from "@/types";
 import Swal from 'sweetalert2';
+import { Copy } from "lucide-react";
+import { toast } from "sonner";
 
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_upload_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AllProductsTable = () => {
     const { data, isLoading } = useGetProductsQuery({});
-    const [ deleteProduct] = useDeleteProductMutation();
+    const [deleteProduct] = useDeleteProductMutation();
+    const [updateProduct] = useUpdateProductMutation();
+    const { data: category, isLoading: categoryLoading } = useGetCategoriesQuery({});
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [sortByRating, setSortByRating] = useState<boolean>(false);
     const [sortByPrice, setSortByPrice] = useState<boolean>(false);
     const [cart, setCart] = useState([])
     const navigate = useNavigate();
-    
+    const [editFormData, setEditFormData] = useState({
+        title: "",
+        description: "",
+        price: "",
+        quantity: "",
+        rating: "",
+        category: "",
+        imageFile: "" || null as File | null,
+    });
+    const [uploading, setUploading] = useState(false);
+
+    const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
+
     if (isLoading) {
         return <div>Loading...</div>
     }
-    console.log(data);
+    if (categoryLoading) {
+        return <div>Loading...</div>
+    }
+    // console.log(data);
     const { data: product } = data;
-    console.log(product);
+    // console.log(product);
+
+    const { data: categoryData } = category;
+
+    const uniqueCategories = Array.from(
+        new Set(categoryData?.map((cat: TCategories) => cat.name))
+    ).map((name) => categoryData.find((cat: TCategories) => cat.name === name));
+
     const itemsPerPage = 5;
 
-    const handleAddToCart = (product : TProducts) => {
+    const handleEditInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setEditFormData({
+            ...editFormData,
+            [e.target.id]: e.target.value,
+        });
+    };
+
+    // Handle file change for image
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setEditFormData({
+            ...editFormData,
+            imageFile: e.target.files ? e.target.files[0] : "" || null as File | null,
+        });
+    };
+
+    // Handle category change
+    const handleCategoryChange = (value: string) => {
+        setEditFormData({
+            ...editFormData,
+            category: value,
+        });
+    };
+
+    // Upload image to ImgBB
+    const uploadImageToImgbb = async (file: File) => {
+        const imageFormData = new FormData();
+        imageFormData.append("image", file);
+
+        try {
+            const response = await fetch(image_upload_api, {
+                method: "POST",
+                body: imageFormData,
+            });
+            const data = await response.json();
+            if (data.success) {
+                return data.data.url;
+            }
+            throw new Error("Image upload failed");
+        } catch (error) {
+            console.error("Error uploading image:", error);
+            return null;
+        }
+    };
+
+    // Handle form submission for update
+    const handleUpdateProduct = async () => {
+        setUploading(true);
+
+        let imageUrl = "";
+        if (editFormData.imageFile) {
+            imageUrl = await uploadImageToImgbb(editFormData.imageFile);
+        }
+
+        if (!imageUrl && editFormData.imageFile) {
+            setUploading(false);
+            return;
+        }
+
+        const updatedProductData = {
+            title: editFormData.title,
+            description: editFormData.description,
+            price: Number(editFormData.price),
+            quantity: Number(editFormData.quantity),
+            rating: Number(editFormData.rating),
+            category: editFormData.category,
+            imageUrl: imageUrl || editFormData.imageFile,  
+        };
+
+        try {
+            if (selectedProductId) {
+                const res = await updateProduct({
+                    id: selectedProductId,
+                    data: updatedProductData
+                }).unwrap();
+                toast.success("Product updated successfully");
+                
+                setSelectedProductId(null);
+            }
+        } catch (error) {
+            console.error("Error updating product:", error);
+            toast.error("Failed to update product");
+        } finally {
+            setUploading(false);
+        }
+    };
+
+    const handleAddToCart = (product: TProducts) => {
         // Check if the item is already in the cart
         const existingItem = cart.find((item) => item._id === product._id);
 
@@ -67,7 +201,7 @@ const AllProductsTable = () => {
         }
     };
 
-    const isOutOfStock = (product : TProducts) => {
+    const isOutOfStock = (product: TProducts) => {
         const existingItem = cart.find((item) => item._id === product._id);
         return existingItem && existingItem.quantity >= product.quntity;
     };
@@ -76,7 +210,7 @@ const AllProductsTable = () => {
 
     // Filter the data based on search term (title and category)
     const filteredData = product?.filter(
-        (item : TProducts) =>
+        (item: TProducts) =>
             item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
             item.category.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -98,7 +232,7 @@ const AllProductsTable = () => {
     const currentData = sortedData.slice(indexOfFirstItem, indexOfLastItem);
     const totalPages = Math.ceil(sortedData.length / itemsPerPage);
 
-    const handleClick = (pageNumber : number) => {
+    const handleClick = (pageNumber: number) => {
         setCurrentPage(pageNumber);
     };
     const toggleSortByRating = () => {
@@ -111,42 +245,42 @@ const AllProductsTable = () => {
 
     const handleDeleteProduct = (_id: string) => {
         Swal.fire({
-          title: "Are you sure?",
-          text: "You won't be able to revert this!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, delete it!"
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
         }).then(async (result) => {
-          if (result.isConfirmed) {
-            try {
-              const response = await deleteProduct(_id).unwrap(); 
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your product has been deleted.",
-                icon: "success"
-              });
-            } catch (error) {
-              console.error("Error deleting product:", error);
-              Swal.fire({
-                title: "Error!",
-                text: "There was an issue deleting your product.",
-                icon: "error"
-              });
+            if (result.isConfirmed) {
+                try {
+                    const response = await deleteProduct(_id).unwrap();
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your product has been deleted.",
+                        icon: "success"
+                    });
+                } catch (error) {
+                    console.error("Error deleting product:", error);
+                    Swal.fire({
+                        title: "Error!",
+                        text: "There was an issue deleting your product.",
+                        icon: "error"
+                    });
+                }
             }
-          }
         });
-      };
+    };
 
     return (
         <div className="container w-full">
             <div className="flex flex-col-reverse md:flex-row justify-between items-center gap-4 my-4">
-              <Link to="/addproduct">
-              <div className="border border-green-900 px-3 py-2 rounded-none font-semibold hover:bg-green-900 hover:text-white">
-                    <button>Add Products</button>
-                </div>
-              </Link>
+                <Link to="/addproduct">
+                    <div className="border border-green-900 px-3 py-2 rounded-none font-semibold hover:bg-green-900 hover:text-white">
+                        <button>Add Products</button>
+                    </div>
+                </Link>
 
                 {/* Sort Select */}
                 <div className="flex my-2 md:my-10 md:ml-40 space-x-4 ">
@@ -220,12 +354,132 @@ const AllProductsTable = () => {
                                 </Link>
                             </TableCell>
                             <TableCell className="">
-                               <button onClick={() => handleDeleteProduct(item._id)}>
-                               <AiFillDelete className="text-red-600 text-xl" />
-                               </button>
+                                <button onClick={() => handleDeleteProduct(item._id)}>
+                                    <AiFillDelete className="text-red-600 text-xl" />
+                                </button>
                             </TableCell>
                             <TableCell >
-                                <CiEdit className="text-green-950 text-xl"></CiEdit>
+                                <Dialog>
+                                    <DialogTrigger asChild>
+                                        <button
+                                            onClick={() => {
+                                                setSelectedProductId(item._id);
+                                                setEditFormData({
+                                                    title: item.title,
+                                                    description: item.description,
+                                                    price: item.price,
+                                                    quantity: item.quantity,
+                                                    rating: item.rating,
+                                                    category: item.category,
+                                                    imageFile: item.imageFile,
+                                                });
+                                            }}
+                                            className="text-blue-500 text-xl"
+                                        >
+                                            <CiEdit />
+                                        </button>
+                                    </DialogTrigger>
+
+                                    <DialogContent className="bg-green-50 backdrop-blur-xl">
+                                        <DialogHeader>
+                                            <DialogTitle className="text-green-950 font-bold text-center text-2xl">Edit Product</DialogTitle>
+                                        </DialogHeader>
+                                        <div className="space-y-4 text-green-950">
+                                            <div>
+                                                <Label htmlFor="title">Title</Label>
+                                                <Input
+                                                    id="title"
+                                                    defaultValue={editFormData.title}
+                                                    onChange={handleEditInputChange}
+                                                />
+                                            </div>
+                                            <div>
+                                                <Label htmlFor="description">Description</Label>
+                                                <Input
+                                                    id="description"
+                                                    defaultValue={editFormData.description}
+                                                    onChange={handleEditInputChange}
+                                                />
+                                            </div>
+                                            <div className="grid grid-cols-3 gap-4">
+                                                <div>
+                                                    <Label htmlFor="price">Price</Label>
+                                                    <Input
+                                                        id="price"
+                                                        type="number"
+                                                        defaultValue={editFormData.price}
+                                                        onChange={handleEditInputChange}
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <Label htmlFor="quantity">Quantity</Label>
+                                                    <Input
+                                                        id="quantity"
+                                                        type="number"
+                                                        defaultValue={editFormData.quantity}
+                                                        onChange={handleEditInputChange}
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <Label htmlFor="rating">Rating</Label>
+                                                    <Input
+                                                        id="rating"
+                                                        type="number"
+                                                        step="0.1"
+                                                        defaultValue={editFormData.rating}
+                                                        onChange={handleEditInputChange}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <Label htmlFor="category">Category</Label>
+                                                <Select
+                                                    defaultValue={editFormData.category}
+                                                    onValueChange={handleCategoryChange}
+                                                >
+                                                    <SelectTrigger>
+                                                        <SelectValue placeholder="Select a category" />
+                                                    </SelectTrigger>
+                                                    <SelectContent>
+                                                        {uniqueCategories?.map((cat) => (
+                                                            <SelectItem key={cat.name} value={cat.name}>
+                                                                {cat.name}
+                                                            </SelectItem>
+                                                        ))}
+                                                    </SelectContent>
+                                                </Select>
+                                            </div>
+                                            <div>
+                                                <Label htmlFor="image">Image</Label>
+                                                <Input
+                                                    id="image"
+                                                    type="file"
+                                                    onChange={handleFileChange}
+                                                   
+                                                />
+                                            </div>
+                                        </div>
+                                        <DialogFooter>
+                                            
+                                          <DialogClose >
+                                          <Button
+                                                type="button"
+                                                onClick={handleUpdateProduct}
+                                                disabled={uploading }
+                                                
+                                            >
+                                             
+                                                {uploading ? "Uploading..." : "Save Changes"}
+ 
+                                            </Button>
+                                            </DialogClose>
+                                            <DialogClose>
+                                                <Button type="button">Cancel</Button>
+                                            </DialogClose>
+                                        </DialogFooter>
+                                    </DialogContent>
+
+                                </Dialog>
                             </TableCell>
                             <TableCell>
                                 <button
