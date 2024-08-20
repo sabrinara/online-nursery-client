@@ -4,6 +4,7 @@ import HowItWorks from "@/components/HowItWorks/HowItWorks";
 import TopProducts from "@/components/TopProducts/TopProducts";
 import HomeCategory from "@/components/HomeCategory/HomeCategory";
 import MosaicImageGallery from "@/components/MosaicImageUser/MosaicImageGallery";
+import ScrollToTopButton from "./ScrollToTopButton";
 export default function Home() {
   return (
     <div className="mx-auto container">
@@ -11,9 +12,9 @@ export default function Home() {
       <TopProducts />
       <HowItWorks />
       <HomeCategory />
-  <MosaicImageGallery />
+      <MosaicImageGallery />
       <ExtraSection1 />
-
+      <ScrollToTopButton />
     </div>
   );
 }

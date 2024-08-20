@@ -11,6 +11,7 @@ import sliderImage1 from "@/assets/banner.jpg";
 import sliderImage2 from "@/assets/banner2.jpg";
 import sliderImage3 from "@/assets/banner3.jpg";
 import React from "react";
+import { Link } from "react-router-dom";
 
 export function HeroSection() {
   const sliderData = [
@@ -77,9 +78,11 @@ export function HeroSection() {
                         </React.Fragment>
                       ))}
                     </p>
-                    <button className="border-2  border-green-800 text-xs md:text-base px-2 md:px-4 py-1 md:py-2 font-bold rounded-none bg-transparent text-green-800 mt-4 md:mt-4 hover:bg-green-950 hover:text-white">
+                <Link to="/allproducts" >
+                <button className="border-2  border-green-800 text-xs md:text-base px-2 md:px-4 py-1 md:py-2 font-bold rounded-none bg-transparent text-green-800 mt-4 md:mt-4 hover:bg-green-950 hover:text-white">
                       Learn More
                     </button>
+                </Link>
                   </div>
                 </CardContent>
               </Card>
