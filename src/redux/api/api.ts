@@ -60,6 +60,20 @@ export const baseApi = createApi({
       }),
       providesTags: ["categories"],
     }),
+    addCategory: builder.mutation({
+      query: (data) => {
+        console.log(data);
+        return {
+          method: "POST",
+          url: "/categories/create-category",
+          body: data,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+      },  
+      invalidatesTags: ["categories"],
+    }),
     getOrders: builder.query ({
       query: () => ({
         method : "GET",
@@ -67,7 +81,21 @@ export const baseApi = createApi({
       }),
       providesTags: ["orders"],
     }),
+    addOrder: builder.mutation({
+      query: (data) => {
+        console.log(data);
+        return {
+          method: "POST",
+          url: "/orders/create-order",
+          body: data,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+      },
+      invalidatesTags: ["orders"],
+    })
   }),
 });
 
-export const { useGetProductsQuery,useAddProductMutation, useUpdateProductMutation, useDeleteProductMutation, useGetASingleProductQuery, useGetCategoriesQuery ,useGetOrdersQuery } = baseApi;
+export const { useGetProductsQuery,useAddProductMutation, useUpdateProductMutation, useDeleteProductMutation, useGetASingleProductQuery, useGetCategoriesQuery, useAddCategoryMutation ,useGetOrdersQuery, useAddOrderMutation } = baseApi;

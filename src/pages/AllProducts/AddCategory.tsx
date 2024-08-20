@@ -1,6 +1,7 @@
 
 
 const AddCategory = () => {
+    
     return (
         <div>
             sdf
