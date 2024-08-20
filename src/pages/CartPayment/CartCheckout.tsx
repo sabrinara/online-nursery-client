@@ -55,7 +55,7 @@ const CartCheckout = () => {
 
     return (
         <div className="container mx-auto p-4 md:p-8">
-            {/* Background and Cart Heading */}
+        
             <div
                 className="relative w-full h-[30vh] md:h-[60vh] bg-no-repeat bg-center bg-cover"
                 style={{
@@ -75,9 +75,12 @@ const CartCheckout = () => {
                 </div>
             </div>
 
-            {/* Empty Cart Message */}
+        <div className="flex justify-center md:justify-end mt-10">
+        <button onClick={handleRemoveAll}  className="px-4 py-2 bg-red-500 text-white rounded-sm">Clear All Items</button>
+        </div>
+            <div>
             {cartItems.length === 0 ? (
-                <div className="flex flex-col justify-center items-center h-screen">
+                <div className="flex flex-col justify-center items-center mt-10">
                     <h1 className="text-3xl font-semibold text-center mb-6">
                         Your Cart is Empty.
                     </h1>
@@ -166,6 +169,7 @@ const CartCheckout = () => {
                     </div>
                 </div>
             )}
+            </div>
         </div>
     );
 };

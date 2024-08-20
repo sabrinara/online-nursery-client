@@ -208,6 +208,7 @@ const AllProductsTable = () => {
             setCart(updatedCart); // Update the local state as well
         }
     
+        toast.success("Product added to cart");
         navigate("/cart"); // Redirect to the cart page if needed
     };
     
