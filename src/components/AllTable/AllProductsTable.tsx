@@ -180,31 +180,37 @@ const AllProductsTable = () => {
     };
 
     const handleAddToCart = (product: TProducts) => {
+        // Get the cart from local storage (if available)
+        const storedCart = localStorage.getItem("cart");
+        const cart = storedCart ? JSON.parse(storedCart) : [];
+    
         // Check if the item is already in the cart
-        const existingItem = cart.find((item) => item._id === product._id);
-
+        const existingItem = cart.find((item: TProducts) => item._id === product._id);
+    
         if (existingItem) {
             // If item already exists and has available quantity, increment the quantity
-            if (existingItem.quantity < product.quntity) {
-                setCart((prevCart) =>
-                    prevCart.map((item) =>
-                        item._id === product._id
-                            ? { ...item, quantity: item.quantity + 1 }
-                            : item
-                    )
+            if (existingItem.quantity < product.quantity) {
+                const updatedCart = cart.map((item: TProducts) =>
+                    item._id === product._id
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
                 );
+                localStorage.setItem("cart", JSON.stringify(updatedCart));
+                toast.success("Product added to cart");
+                setCart(updatedCart); // Update the local state as well
+            } else {
+                toast.error("Maximum quantity reached");
             }
-            navigate("/cart");
         } else {
             // If item is not in the cart, add it with initial quantity 1
-            setCart((prevCart) => [...prevCart, { ...product, quantity: 1 }]);
+            const updatedCart = [...cart, { ...product, quantity: 1 }];
+            localStorage.setItem("cart", JSON.stringify(updatedCart));
+            setCart(updatedCart); // Update the local state as well
         }
+    
+        navigate("/cart"); // Redirect to the cart page if needed
     };
-
-    const isOutOfStock = (product: TProducts) => {
-        const existingItem = cart.find((item) => item._id === product._id);
-        return existingItem && existingItem.quantity >= product.quntity;
-    };
+    
 
 
 
@@ -349,7 +355,7 @@ const AllProductsTable = () => {
                             </TableCell>
                             <TableCell>{item.rating}</TableCell>
                             <TableCell>
-                                <Link to={`/allproducts/${item.id}`}>
+                                <Link to={`/allproducts/${item._id}`}>
                                     < VscOpenPreview className="text-xl  " title="View Details" />
                                 </Link>
                             </TableCell>
@@ -484,9 +490,7 @@ const AllProductsTable = () => {
                             <TableCell>
                                 <button
                                     onClick={() => handleAddToCart(item)}
-                                    disabled={isOutOfStock(item)}
-                                    className={`text-xl ${isOutOfStock(item) ? "text-gray-400 cursor-not-allowed" : "text-green-600"}`}
-                                    title={isOutOfStock(item) ? "Out of Stock" : "Add to Cart"}
+                                    className="text-green-950 text-xl"
                                 >
                                     <IoCartOutline />
                                 </button>

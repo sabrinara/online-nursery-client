@@ -45,7 +45,13 @@ export const baseApi = createApi({
       }),
       invalidatesTags: ["products"],
     }),
-    
+    getASingleProduct: builder.query ({
+      query: ({ id } ) => ({
+        method : "GET",
+        url : `/products/${id}`
+      }),
+      providesTags: ["products"],
+    }),
     
     getCategories: builder.query ({
       query: () => ({
@@ -64,4 +70,4 @@ export const baseApi = createApi({
   }),
 });
 
-export const { useGetProductsQuery,useAddProductMutation, useUpdateProductMutation, useDeleteProductMutation, useGetCategoriesQuery ,useGetOrdersQuery } = baseApi;
+export const { useGetProductsQuery,useAddProductMutation, useUpdateProductMutation, useDeleteProductMutation, useGetASingleProductQuery, useGetCategoriesQuery ,useGetOrdersQuery } = baseApi;
