@@ -100,7 +100,7 @@ const AllProductsTable = () => {
         });
     };
 
-    // Handle file change for image
+ 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEditFormData({
             ...editFormData,
@@ -108,7 +108,7 @@ const AllProductsTable = () => {
         });
     };
 
-    // Handle category change
+  
     const handleCategoryChange = (value: string) => {
         setEditFormData({
             ...editFormData,
@@ -116,7 +116,7 @@ const AllProductsTable = () => {
         });
     };
 
-    // Upload image to ImgBB
+   
     const uploadImageToImgbb = async (file: File) => {
         const imageFormData = new FormData();
         imageFormData.append("image", file);
@@ -137,7 +137,7 @@ const AllProductsTable = () => {
         }
     };
 
-    // Handle form submission for update
+ 
     const handleUpdateProduct = async () => {
         setUploading(true);
 
@@ -180,15 +180,15 @@ const AllProductsTable = () => {
     };
 
     const handleAddToCart = (product: TProducts) => {
-        // Get the cart from local storage (if available)
+      
         const storedCart = localStorage.getItem("cart");
         const cart = storedCart ? JSON.parse(storedCart) : [];
     
-        // Check if the item is already in the cart
+      
         const existingItem = cart.find((item: TProducts) => item._id === product._id);
     
         if (existingItem) {
-            // If item already exists and has available quantity, increment the quantity
+          
             if (existingItem.quantity < product.quantity) {
                 const updatedCart = cart.map((item: TProducts) =>
                     item._id === product._id
@@ -197,32 +197,28 @@ const AllProductsTable = () => {
                 );
                 localStorage.setItem("cart", JSON.stringify(updatedCart));
                 toast.success("Product added to cart");
-                setCart(updatedCart); // Update the local state as well
+                setCart(updatedCart); 
             } else {
                 toast.error("Maximum quantity reached");
             }
         } else {
-            // If item is not in the cart, add it with initial quantity 1
+       
             const updatedCart = [...cart, { ...product, quantity: 1 }];
             localStorage.setItem("cart", JSON.stringify(updatedCart));
-            setCart(updatedCart); // Update the local state as well
+            setCart(updatedCart);
         }
     
         toast.success("Product added to cart");
-        navigate("/cart"); // Redirect to the cart page if needed
+        navigate("/cart"); 
     };
     
-
-
-
-    // Filter the data based on search term (title and category)
     const filteredData = product?.filter(
         (item: TProducts) =>
             item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
             item.category.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    // Sort the filtered data based on the selected sort criteria
+    
     const sortedData = [...filteredData].sort((a, b) => {
         if (sortByRating && sortByPrice) {
             return b.rating - a.rating || b.price - a.price;
@@ -350,7 +346,7 @@ const AllProductsTable = () => {
                                     <img
                                         src={item.imageUrl}
                                         alt={item.title}
-                                        className="w-24 h-24 object-cover"
+                                        className="w-24 h-24 object-cover transform hover:scale-105 transition-transform duration-300"
                                     />
                                 </Link>
                             </TableCell>
