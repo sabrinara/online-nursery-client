@@ -29,15 +29,20 @@ export default function Navbar() {
       path: "/allcategories",
     },
     {
-      id: 3,
-      name: "About",
-      path: "/about",
-    },
-    {
       id: 4,
-      name: "Contact",
-      path: "/contact",
+      name: "FAQ",
+      path: "/faq",
     },
+    // {
+    //   id: 3,
+    //   name: "About",
+    //   path: "/about",
+    // },
+    // {
+    //   id: 4,
+    //   name: "Contact",
+    //   path: "/contact",
+    // },
     {
       id: 5,
       name: <BsCartCheckFill className="text-2xl" />,

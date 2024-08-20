@@ -6,6 +6,7 @@ import AllProducts from "@/pages/AllProducts/AllProducts";
 import ProductDetail from "@/pages/AllProducts/ProductDetail";
 import CartCheckout from "@/pages/CartPayment/CartCheckout";
 import Payment from "@/pages/CartPayment/Payment";
+import FAQ from "@/pages/FAQ/FAQ";
 import Home from "@/pages/Home/Home";
 import PrivacyPolicy from "@/pages/PrivacyPolicy/PrivacyPolicy";
 import TermsCondition from "@/pages/TermsCondition/TermsCondition";
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
         path:"/terms&condition",
         element:<TermsCondition/>,
       },
+      {
+        path: "/faq",
+        element:<FAQ/>
+      }
     ],
   },
 ]);

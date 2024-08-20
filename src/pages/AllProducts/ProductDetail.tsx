@@ -82,7 +82,7 @@ const ProductDetail = () => {
 
 
                         </div>
-                        <p className="text-justify mb-4">{product?.description}</p>
+                        <p className="text-justify mb-4">{product?.description.slice(0, 300)}..</p>
                         <div className="flex justify-end animate-bounce ">
                             <button
                                 onClick={() => handleAddToCart(product)}
