@@ -27,7 +27,6 @@ import {
     Dialog,
     DialogClose,
     DialogContent,
-    DialogDescription,
     DialogFooter,
     DialogHeader,
     DialogTitle,
@@ -45,7 +44,6 @@ import { IoCartOutline } from "react-icons/io5";
 import { useDeleteProductMutation, useGetCategoriesQuery, useGetProductsQuery, useUpdateProductMutation } from "@/redux/api/api";
 import { TCategories, TProducts } from "@/types";
 import Swal from 'sweetalert2';
-import { Copy } from "lucide-react";
 import { toast } from "sonner";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;

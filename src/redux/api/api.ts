@@ -94,7 +94,7 @@ export const baseApi = createApi({
         };
       },
       invalidatesTags: ["orders"],
-    })
+    }),
   }),
 });
 

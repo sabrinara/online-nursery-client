@@ -26,7 +26,7 @@ export type TOrders = {
   name: string;
   email: string;
   userImage: string;
-  totalPrice: number;
+  TotalPrice: number;
   phoneNumber: number;
   address: string;
   company: string;
