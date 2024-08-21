@@ -44,7 +44,11 @@ const AddProducts = () => {
   const [uploading, setUploading] = useState(false);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-screen mt-10">
+          <p className="text-4xl text-green-500">Loading...</p>
+      </div>
+  );
   }
 
   const { data: category } = data || {};

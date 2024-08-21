@@ -74,7 +74,11 @@ const AllProductsTable = () => {
     const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
 
     if (isLoading) {
-        return <div>Loading...</div>
+        return (
+            <div className="flex justify-center items-center h-screen mt-10">
+                <p className="text-4xl text-green-500">Loading...</p>
+            </div>
+        );
     }
     if (categoryLoading) {
         return <div>Loading...</div>

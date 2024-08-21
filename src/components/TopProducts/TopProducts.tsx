@@ -6,11 +6,11 @@ const TopProducts = () => {
     const {data , isLoading} = useGetProductsQuery([]);
 
     if (isLoading) {
-        return (
-          <p className="text-4xl text-yellow-500 flex justify-center items-center">
-            Loading...
-          </p>
-        );
+      return (
+        <div className="flex justify-center items-center h-screen mt-10">
+            <p className="text-4xl text-green-500">Loading...</p>
+        </div>
+    );
       }
     console.log(data);
 
