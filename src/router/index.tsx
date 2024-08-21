@@ -1,5 +1,6 @@
 import MainLayout from "@/components/Layouts/MainLayouts";
 import AllCategories from "@/pages/AllCategories/AllCategories";
+import AllClients from "@/pages/AllClients/AllClients";
 import AddCategory from "@/pages/AllProducts/AddCategory";
 import AddProducts from "@/pages/AllProducts/AddProducts";
 import AllProducts from "@/pages/AllProducts/AllProducts";
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "/payments",
         element: <Payment />,
+      },
+      {
+        path: "/allclients",
+        element: <AllClients />,
       },
       {
         path: "/privacypolicy",

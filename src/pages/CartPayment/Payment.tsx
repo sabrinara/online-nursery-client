@@ -90,12 +90,14 @@ const Payment = () => {
 
        
         const productArray = cartItems.map((item: TOrders) => ({
+            _id: item._id,
             title: item.title,
             imageUrl: item.imageUrl, 
             quantity: item.quantity,
             category: item.category,
         }));
 
+        console.log(productArray);
         const orderData = {
             name: formData.name,
             email: formData.email,
@@ -116,7 +118,7 @@ const Payment = () => {
             const response = await addOrder(orderData).unwrap();
             console.log("Order placed successfully:", response);
             toast.success("Order placed successfully!");
-            localStorage.clear();
+          
             navigate("/");
         } catch (error: any) {
             if (error.data && error.data.message) {

@@ -3,6 +3,7 @@ import { TOrders } from "@/types";
 import { useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import { Link } from "react-router-dom";
 
 const MosaicImageGallery = () => {
     const { data, isLoading } = useGetOrdersQuery({});
@@ -94,7 +95,8 @@ const MosaicImageGallery = () => {
 
                 </ResponsiveMasonry>
             </div>
-            <div className="flex items-center justify-center gap-4 mt-6 mb-16 hover:animate-wobble">
+          <Link to="/allclients">
+          <div className="flex items-center justify-center gap-4 mt-6 mb-16 hover:animate-wobble">
                 <button className="relative flex items-center justify-center border-2 border-green-800 text-green-900  px-6 py-3 rounded-full w-20 h-20 bg-white shadow-lg  transition duration-300">
 
 
@@ -104,6 +106,7 @@ const MosaicImageGallery = () => {
                 </h1>
                 <FaArrowRight className="  text-green-900 text-lg mt-1 ml-40" />
             </div>
+          </Link>
         </div>
     );
 };
