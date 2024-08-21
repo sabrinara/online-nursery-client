@@ -14,7 +14,7 @@ import {
 const AllClients = () => {
     const { data, isLoading } = useGetOrdersQuery([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [selectedOrder, setSelectedOrder] = useState<TOrders | null>(null); // Store selected order data
+    const [selectedOrder, setSelectedOrder] = useState<TOrders | null>(null); 
     const itemsPerPage = 8;
 
     if (isLoading) {
@@ -83,7 +83,7 @@ const AllClients = () => {
                         <div
                             key={order._id}
                             className="relative cursor-pointer"
-                            onClick={() => viewOrderDetails(order)} // Open modal with order details
+                            onClick={() => viewOrderDetails(order)} 
                         >
                             <img
                                 src={order.userImage}

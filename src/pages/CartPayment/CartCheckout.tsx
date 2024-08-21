@@ -11,6 +11,7 @@ import {
   import { VscOpenPreview } from "react-icons/vsc";
   import { Link } from "react-router-dom";
   import { CiCirclePlus } from "react-icons/ci";
+import ScrollToTopButton from "../Home/ScrollToTopButton";
   
   const CartCheckout = () => {
     const [cartItems, setCartItems] = useState(
@@ -98,7 +99,6 @@ import {
             </div>
           ) : (
             <div>
-              {/* Cart Table */}
               <div className="overflow-x-auto mt-10">
                 <Table className="text-center">
                   <TableHeader>
@@ -162,7 +162,6 @@ import {
                 </Table>
               </div>
   
-              {/* Cart Total and Checkout Button */}
               <div className="mt-8 flex flex-col md:flex-row justify-between items-center">
                 <div className="text-lg font-semibold">
                   Total: ${calculateTotal().toFixed(2)}
@@ -176,6 +175,7 @@ import {
             </div>
           )}
         </div>
+        <ScrollToTopButton />
       </div>
     );
   };

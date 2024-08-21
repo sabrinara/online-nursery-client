@@ -1,4 +1,5 @@
 import { FaQuestionCircle } from "react-icons/fa";
+import ScrollToTopButton from "../Home/ScrollToTopButton";
 
 const FAQ = () => {
     const data = [
@@ -64,6 +65,7 @@ const FAQ = () => {
                 </div>
             ))}
            </div>
+           <ScrollToTopButton />
         </div>
     );
 };

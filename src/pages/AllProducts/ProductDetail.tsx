@@ -58,10 +58,10 @@ const ProductDetail = () => {
                     <img
                         src={product?.imageUrl}
                         alt="product Poster"
-                        className="w-full md:w-1/3 h-auto mb-4 rounded-lg shadow-lg md:mr-6 transform hover:scale-105 transition-transform duration-300"
+                        className="w-full md:w-1/2 h-auto mb-4 rounded-lg shadow-lg md:mr-6 transform hover:scale-105 transition-transform duration-300"
                     />
                     <div className="flex flex-col md:mt-10">
-                        <div className="text-green-950 mb-4">
+                        <div className="text-green-950 mb-1 md:mb-4">
                             <div className="hidden md:flex  justify-between items-center">
                                 <h1 className="text-4xl font-extrabold mb-4">{product?.title}</h1>
                                 <div className="flex items-center gap-2">
@@ -78,12 +78,12 @@ const ProductDetail = () => {
                             </div>
                             <p className="hidden md:block text-xl font-bold mb-2">Price: <span className="text-green-800 font-bold">${product?.price}</span></p>
                             <p className="text-xl font-bold mb-2">Quantity: <span className="text-green-800 font-bold">{product?.quantity}</span></p>
-                            <p className="text-xl font-bold mb-2">Category: <span className="text-green-800 font-bold">{product?.category}</span></p>
+                            <p className="text-xl font-bold md:mb-2">Category: <span className="text-green-800 font-bold">{product?.category}</span></p>
 
 
                         </div>
-                        <p className="text-justify mb-4">{product?.description.slice(0, 300)}..</p>
-                        <div className="flex justify-end animate-bounce ">
+                        <p className="text-justify mb-2 ">{product?.description.slice(0, 300)}..</p>
+                        <div className="flex justify-end animate-bounce md:mt-10">
                             <button
                                 onClick={() => handleAddToCart(product)}
                                 className="bg-green-950 text-white px-6 py-2 rounded shadow hover:bg-green-700 text-3xl "

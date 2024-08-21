@@ -1,4 +1,5 @@
 import AllProductsTable from "@/components/AllTable/AllProductsTable";
+import ScrollToTopButton from "../Home/ScrollToTopButton";
 
 const AllProducts = () => {
   return (
@@ -19,6 +20,7 @@ const AllProducts = () => {
     </div>
     
     <AllProductsTable />
+    <ScrollToTopButton />
   </div>
   );
 };

@@ -1,4 +1,5 @@
 import AllCategoryCard from "@/components/AllCard/AllCategoryCard";
+import ScrollToTopButton from "../Home/ScrollToTopButton";
 
 
 const AllCategories = () => {
@@ -33,6 +34,7 @@ const AllCategories = () => {
             </div>
 
             <AllCategoryCard />
+            <ScrollToTopButton />
         </div>
     );
 };

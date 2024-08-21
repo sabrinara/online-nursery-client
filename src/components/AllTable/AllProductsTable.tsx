@@ -344,7 +344,7 @@ const AllProductsTable = () => {
                             <TableCell>{item.title}</TableCell>
                             <TableCell>{item.category}</TableCell>
                             <TableCell className="">
-                                <Link to={`/allproducts/${item.id}`}>
+                                <Link to={`/allproducts/${item._id}`}>
                                     <img
                                         src={item.imageUrl}
                                         alt={item.title}
