@@ -1,5 +1,7 @@
 import MainLayout from "@/components/Layouts/MainLayouts";
 import AllCategories from "@/pages/AllCategories/AllCategories";
+import AllProductsByCategory from "@/pages/AllCategories/AllProductsByCategory";
+import CategorySideBar from "@/pages/AllCategories/CategorySideBar";
 import AllClients from "@/pages/AllClients/AllClients";
 import AddCategory from "@/pages/AllProducts/AddCategory";
 import AddProducts from "@/pages/AllProducts/AddProducts";
@@ -38,7 +40,16 @@ const router = createBrowserRouter([
       {
         path: "/allcategories",
         element: <AllCategories />,
+        children: [
+          
+            {
+              path: "/allcategories/allproductscategory/:name",
+              element: <CategorySideBar />,
+            },
+          
+        ]
       },
+  
       {
         path: "/addcategory",
         element: <AddCategory />,

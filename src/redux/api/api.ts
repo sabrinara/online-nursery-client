@@ -52,6 +52,19 @@ export const baseApi = createApi({
       }),
       providesTags: ["products"],
     }),
+    getAllProductsCategories: builder.query({
+      query: (name: string) => {
+        const formattedName = decodeURIComponent(name); // Decodes '%20' to spaces
+        return {
+          method: "GET",
+          url: `/products?&category=${formattedName}`,
+        };
+      },
+      providesTags: ["products", "categories"],
+    }),
+    
+    
+    
     
     getCategories: builder.query ({
       query: () => ({
@@ -60,6 +73,7 @@ export const baseApi = createApi({
       }),
       providesTags: ["categories"],
     }),
+   
     addCategory: builder.mutation({
       query: (data) => {
         console.log(data);
@@ -98,4 +112,4 @@ export const baseApi = createApi({
   }),
 });
 
-export const { useGetProductsQuery,useAddProductMutation, useUpdateProductMutation, useDeleteProductMutation, useGetASingleProductQuery, useGetCategoriesQuery, useAddCategoryMutation ,useGetOrdersQuery, useAddOrderMutation } = baseApi;
+export const { useGetProductsQuery,useAddProductMutation, useUpdateProductMutation, useDeleteProductMutation, useGetASingleProductQuery,useGetAllProductsCategoriesQuery, useGetCategoriesQuery, useAddCategoryMutation ,useGetOrdersQuery, useAddOrderMutation } = baseApi;
