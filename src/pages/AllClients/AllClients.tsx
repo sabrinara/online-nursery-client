@@ -14,7 +14,7 @@ import {
 const AllClients = () => {
     const { data, isLoading } = useGetOrdersQuery([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [selectedOrder, setSelectedOrder] = useState<TOrders | null>(null); 
+    const [selectedOrder, setSelectedOrder] = useState<TOrders | null>(null);
     const itemsPerPage = 8;
 
     if (isLoading) {
@@ -48,8 +48,101 @@ const AllClients = () => {
         setSelectedOrder(null);
     };
 
+    const renderPageNumbers = () => {
+        const pages = [];
+
+        // If there are multiple pages and we are not on the first page
+        if (currentPage > 1) {
+            pages.push(
+                <PaginationItem key="previous">
+                    <PaginationPrevious
+                        href="#"
+                        onClick={() => handleClick(currentPage - 1)}
+                    />
+                </PaginationItem>
+            );
+        }
+
+        // Previous page (if it exists)
+        if (currentPage > 2) {
+            pages.push(
+                <PaginationItem key={currentPage - 1}>
+                    <PaginationLink href="#" onClick={() => handleClick(currentPage - 1)}>
+                        {currentPage - 1}
+                    </PaginationLink>
+                </PaginationItem>
+            );
+        }
+
+        // Current page
+        pages.push(
+            <PaginationItem key={currentPage}>
+                <PaginationLink href="#" isActive onClick={() => handleClick(currentPage)}>
+                    {currentPage}
+                </PaginationLink>
+            </PaginationItem>
+        );
+
+        // Next page (if it exists)
+        if (currentPage < totalPages - 1) {
+            pages.push(
+                <PaginationItem key={currentPage + 1}>
+                    <PaginationLink href="#" onClick={() => handleClick(currentPage + 1)}>
+                        {currentPage + 1}
+                    </PaginationLink>
+                </PaginationItem>
+            );
+        }
+
+        // If there are more pages after the current selection
+        if (currentPage < totalPages) {
+            pages.push(
+                <PaginationItem key="next">
+                    <PaginationNext href="#" onClick={() => handleClick(currentPage + 1)} />
+                </PaginationItem>
+            );
+        }
+
+        return pages;
+    };
+
     return (
-        <div className="p-6">
+        <div className="md:p-6">
+            <div className="mb-6 hidden md:flex flex-col md:flex-row-reverse justify-center items-center md:h-[67vh] bg-green-50 py-2 ">
+                <div className="w-full md:w-1/2 p-10 md:p-0 md:mx-10 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                    <h5 className="font-jost text-xs md:text-base text-green-900 font-medium md:pb-2 tracking-widest uppercase ml-6 md:ml-1">Naturenest</h5>
+                    <h2 className="text-2xl md:text-6xl font-bold md:mb-2 text-green-950">
+                        Our Happy Clients
+                    </h2>
+                    <p className="text-xs md:text-base font-medium md:mt-4 ml-6 md:ml-1">
+                        We are proud to have some of the best clients. Our clients have been happy with our services.
+                    </p>
+                </div>
+                <div className="w-full md:w-1/2">
+                    <img src="../../../public/people2.jpg" alt="People" className="w-full md:h-[65vh] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105" />
+                </div>
+            </div>
+            <div className="relative mb-6 flex md:hidden flex-col md:flex-row-reverse justify-center items-center md:h-[67vh] bg-green-50 py-2 "
+                style={{
+                    backgroundImage: `url("./../public/people2.jpg")`,
+                    backgroundPosition: "center",
+                    height: "36vh",
+                    backgroundSize: "cover",
+                    opacity: "0.9",
+                }}
+            >
+                <div className="absolute w-full px-10 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                    <div className="bg-green-100 py-2 opacity-80">
+                        <h5 className="font-jost text-xs md:text-base text-green-950 font-medium md:pb-2 tracking-widest uppercase ml-6 md:ml-1">Naturenest</h5>
+                        <h2 className="text-2xl md:text-6xl font-bold md:mb-2 text-green-950 text-center">
+                            Our Happy Clients
+                        </h2>
+                        <p className="text-xs md:text-base font-medium md:mt-4 ml-6 md:ml-1">
+                            We are proud to have some of the best clients. Our clients have been happy with our services.
+                        </p>
+                    </div>
+                </div>
+            </div>
             {selectedOrder && (
                 <div
                     className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75"
@@ -57,7 +150,7 @@ const AllClients = () => {
                 >
                     <div
                         className="bg-transparent backdrop-blur-md p-10 rounded-none max-w-md w-full text-green-50"
-                        onClick={(e) => e.stopPropagation()} 
+                        onClick={(e) => e.stopPropagation()}
                     >
                         <img
                             src={selectedOrder.userImage}
@@ -83,7 +176,7 @@ const AllClients = () => {
                         <div
                             key={order._id}
                             className="relative cursor-pointer"
-                            onClick={() => viewOrderDetails(order)} 
+                            onClick={() => viewOrderDetails(order)}
                         >
                             <img
                                 src={order.userImage}
@@ -106,31 +199,7 @@ const AllClients = () => {
             <div className="my-6 md:my-10 flex justify-center">
                 <Pagination>
                     <PaginationContent>
-                        <PaginationItem>
-                            <PaginationPrevious
-                                href="#"
-                                onClick={() => handleClick(currentPage - 1)}
-                                disabled={currentPage === 1}
-                            />
-                        </PaginationItem>
-                        {[...Array(totalPages)].map((_, index) => (
-                            <PaginationItem key={index}>
-                                <PaginationLink
-                                    href="#"
-                                    isActive={currentPage === index + 1}
-                                    onClick={() => handleClick(index + 1)}
-                                >
-                                    {index + 1}
-                                </PaginationLink>
-                            </PaginationItem>
-                        ))}
-                        <PaginationItem>
-                            <PaginationNext
-                                href="#"
-                                onClick={() => handleClick(currentPage + 1)}
-                                disabled={currentPage === totalPages}
-                            />
-                        </PaginationItem>
+                        {renderPageNumbers()}
                     </PaginationContent>
                 </Pagination>
             </div>
