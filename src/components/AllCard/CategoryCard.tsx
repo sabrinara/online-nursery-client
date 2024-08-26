@@ -16,10 +16,12 @@ const CategoryCard = ({ categories }: {categories : TCategories }) => {
                         <div className="relative group">
                             <img src={item.imageUrl} alt={item.name} className="w-full h-96 transform hover:scale-105 transition-transform duration-300" />
                             <div className="absolute inset-0 flex items-center justify-center gap-4 top-3/4 bg-green-200 bg-opacity-20  ">
-                                <div className="flex justify-center items-center gap-1 hover:animate-wobble" title="Show more">
+                               <Link to={"/allcategories/allproductscategory/" + item.name} >
+                               <div className="flex justify-center items-center gap-1 hover:animate-wobble" title="Show more">
                                     <h1 className="text-xl text-gray-600">{item.name} </h1>
                                     <FaArrowRight className="text-2xl text-gray-600 mt-1" />
                                 </div>
+                               </Link>
                             </div>
                         </div>
 
