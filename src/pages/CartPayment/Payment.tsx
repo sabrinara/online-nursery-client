@@ -77,7 +77,7 @@ const Payment = () => {
         e.preventDefault();
         setUploading(true);
 
-      
+
         let userImage = "";
         if (formData.imageFile) {
             userImage = await uploadImageToImgbb(formData.imageFile);
@@ -88,11 +88,11 @@ const Payment = () => {
             return;
         }
 
-       
+
         const productArray = cartItems.map((item: TOrders) => ({
             _id: item._id,
             title: item.title,
-            imageUrl: item.imageUrl, 
+            imageUrl: item.imageUrl,
             quantity: item.quantity,
             category: item.category,
         }));
@@ -118,7 +118,7 @@ const Payment = () => {
             const response = await addOrder(orderData).unwrap();
             console.log("Order placed successfully:", response);
             toast.success("Order placed successfully!");
-          
+            localStorage.removeItem("cart");
             navigate("/");
         } catch (error: any) {
             if (error.data && error.data.message) {
