@@ -1,6 +1,5 @@
 import MainLayout from "@/components/Layouts/MainLayouts";
 import AllCategories from "@/pages/AllCategories/AllCategories";
-import AllProductsByCategory from "@/pages/AllCategories/AllProductsByCategory";
 import CategorySideBar from "@/pages/AllCategories/CategorySideBar";
 import AllClients from "@/pages/AllClients/AllClients";
 import AddCategory from "@/pages/AllProducts/AddCategory";

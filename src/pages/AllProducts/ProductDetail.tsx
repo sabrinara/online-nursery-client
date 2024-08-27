@@ -10,9 +10,9 @@ const ProductDetail = () => {
     const { id: _id } = useParams();
 
     const { data, isLoading } = useGetASingleProductQuery({ id: _id });
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState<TProducts[]>([]);
     const navigate = useNavigate();
-
+    console.log(cart)
     if (isLoading) {
         return (
             <div className="flex justify-center items-center h-screen mt-10">

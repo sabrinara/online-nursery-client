@@ -56,7 +56,6 @@ const AllClients = () => {
             pages.push(
                 <PaginationItem key="previous">
                     <PaginationPrevious
-                        href="#"
                         onClick={() => handleClick(currentPage - 1)}
                     />
                 </PaginationItem>

@@ -20,7 +20,7 @@ const MosaicImageGallery = () => {
     // console.log(orders);
 
 
-    const viewImage = (img) => {
+    const viewImage = (img : any) => {
         setView(img);
     };
 

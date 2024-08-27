@@ -4,7 +4,7 @@ import { TProducts } from "@/types";
 import { FaHeart } from "react-icons/fa";
 
 const AllProductsByCategory = () => {
-  const { name } = useParams<{ name: string }>(); // Get the 'name' from the URL
+  const { name } = useParams();
   const { data, isLoading } = useGetAllProductsCategoriesQuery(name);
 
   if (isLoading) {

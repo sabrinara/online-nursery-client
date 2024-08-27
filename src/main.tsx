@@ -10,7 +10,7 @@ import { Toaster } from 'sonner';
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Provider store={store}>
-    <Toaster position="top-center" toastOptions={{ duration: 3000 }} />
+    <Toaster position="top-center" toastOptions={{ duration: 5000 }} />
       <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>

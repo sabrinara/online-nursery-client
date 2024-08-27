@@ -58,7 +58,8 @@ const AllProductsTable = () => {
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [sortByRating, setSortByRating] = useState<boolean>(false);
     const [sortByPrice, setSortByPrice] = useState<boolean>(false);
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = useState<TProducts[]>([]);
+    console.log(cart);
     const navigate = useNavigate();
     const [editFormData, setEditFormData] = useState({
         title: "",
@@ -102,7 +103,7 @@ const AllProductsTable = () => {
         });
     };
 
- 
+
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEditFormData({
             ...editFormData,
@@ -110,7 +111,7 @@ const AllProductsTable = () => {
         });
     };
 
-  
+
     const handleCategoryChange = (value: string) => {
         setEditFormData({
             ...editFormData,
@@ -118,7 +119,7 @@ const AllProductsTable = () => {
         });
     };
 
-   
+
     const uploadImageToImgbb = async (file: File) => {
         const imageFormData = new FormData();
         imageFormData.append("image", file);
@@ -139,7 +140,7 @@ const AllProductsTable = () => {
         }
     };
 
- 
+
     const handleUpdateProduct = async () => {
         setUploading(true);
 
@@ -160,7 +161,7 @@ const AllProductsTable = () => {
             quantity: Number(editFormData.quantity),
             rating: Number(editFormData.rating),
             category: editFormData.category,
-            imageUrl: imageUrl || editFormData.imageFile,  
+            imageUrl: imageUrl || editFormData.imageFile,
         };
 
         try {
@@ -169,28 +170,36 @@ const AllProductsTable = () => {
                     id: selectedProductId,
                     data: updatedProductData
                 }).unwrap();
+                // Swal.fire({
+                //     icon: 'success',
+                //     title: 'Product updated successfully',
+                //     showConfirmButton: false,
+                //     timer: 1500
+                // })
+
                 toast.success("Product updated successfully");
-                
+                console.log(res);
                 setSelectedProductId(null);
             }
         } catch (error) {
             console.error("Error updating product:", error);
             toast.error("Failed to update product");
         } finally {
+
             setUploading(false);
         }
     };
 
     const handleAddToCart = (product: TProducts) => {
-      
+
         const storedCart = localStorage.getItem("cart");
         const cart = storedCart ? JSON.parse(storedCart) : [];
-    
-      
+
+
         const existingItem = cart.find((item: TProducts) => item._id === product._id);
-    
+
         if (existingItem) {
-          
+
             if (existingItem.quantity < product.quantity) {
                 const updatedCart = cart.map((item: TProducts) =>
                     item._id === product._id
@@ -199,28 +208,28 @@ const AllProductsTable = () => {
                 );
                 localStorage.setItem("cart", JSON.stringify(updatedCart));
                 toast.success("Product added to cart");
-                setCart(updatedCart); 
+                setCart(updatedCart);
             } else {
                 toast.error("Maximum quantity reached");
             }
         } else {
-       
+
             const updatedCart = [...cart, { ...product, quantity: 1 }];
             localStorage.setItem("cart", JSON.stringify(updatedCart));
             setCart(updatedCart);
         }
-    
+
         toast.success("Product added to cart");
-        navigate("/cart"); 
+        navigate("/cart");
     };
-    
+
     const filteredData = product?.filter(
         (item: TProducts) =>
             item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
             item.category.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    
+
     const sortedData = [...filteredData].sort((a, b) => {
         if (sortByRating && sortByPrice) {
             return b.rating - a.rating || b.price - a.price;
@@ -261,6 +270,7 @@ const AllProductsTable = () => {
             if (result.isConfirmed) {
                 try {
                     const response = await deleteProduct(_id).unwrap();
+                    console.log(response);
                     Swal.fire({
                         title: "Deleted!",
                         text: "Your product has been deleted.",
@@ -460,23 +470,23 @@ const AllProductsTable = () => {
                                                     id="image"
                                                     type="file"
                                                     onChange={handleFileChange}
-                                                   
+
                                                 />
                                             </div>
                                         </div>
                                         <DialogFooter>
-                                            
-                                          <DialogClose >
-                                          <Button
-                                                type="button"
-                                                onClick={handleUpdateProduct}
-                                                disabled={uploading }
-                                                
-                                            >
-                                             
-                                                {uploading ? "Uploading..." : "Save Changes"}
- 
-                                            </Button>
+
+                                            <DialogClose >
+                                                <Button
+                                                    type="button"
+                                                    onClick={handleUpdateProduct}
+                                                    disabled={uploading}
+
+                                                >
+
+                                                    {uploading ? "Uploading..." : "Save Changes"}
+
+                                                </Button>
                                             </DialogClose>
                                             <DialogClose>
                                                 <Button type="button">Cancel</Button>
@@ -506,16 +516,18 @@ const AllProductsTable = () => {
                 <Pagination>
                     <PaginationContent>
                         <PaginationItem>
-                            <PaginationPrevious
-                                href="#"
-                                onClick={() => handleClick(currentPage - 1)}
-                                disabled={currentPage === 1}
-                            />
+                            <PaginationPrevious>
+                                {currentPage > 1 && (
+                                    <PaginationLink onClick={() => handleClick(currentPage - 1)}>
+                                        Previous
+                                    </PaginationLink>
+                                )}
+                            </PaginationPrevious>
                         </PaginationItem>
                         {[...Array(totalPages)].map((_, index) => (
                             <PaginationItem key={index}>
                                 <PaginationLink
-                                    href="#"
+
                                     isActive={currentPage === index + 1}
                                     onClick={() => handleClick(index + 1)}
                                 >
@@ -524,11 +536,13 @@ const AllProductsTable = () => {
                             </PaginationItem>
                         ))}
                         <PaginationItem>
-                            <PaginationNext
-                                href="#"
-                                onClick={() => handleClick(currentPage + 1)}
-                                disabled={currentPage === totalPages}
-                            />
+                            <PaginationNext>
+                                {currentPage < totalPages && (
+                                    <PaginationLink onClick={() => handleClick(currentPage + 1)}>
+                                        Next
+                                    </PaginationLink>
+                                )}
+                            </PaginationNext>
                         </PaginationItem>
                     </PaginationContent>
                 </Pagination>
