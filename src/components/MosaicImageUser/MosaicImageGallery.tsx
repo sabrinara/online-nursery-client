@@ -17,7 +17,7 @@ const MosaicImageGallery = () => {
         );
     }
     const { data: orders } = data;
-    console.log(orders);
+    // console.log(orders);
 
 
     const viewImage = (img) => {

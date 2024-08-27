@@ -12,7 +12,7 @@ const TopProducts = () => {
         </div>
     );
       }
-    console.log(data);
+    // console.log(data);
 
     const { data: products } = data ;
     return (

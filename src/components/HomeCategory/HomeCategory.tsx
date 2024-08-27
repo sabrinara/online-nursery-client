@@ -12,7 +12,7 @@ if (isLoading) {
       </p>
     );
   }
-    console.log(data);
+    // console.log(data);
 
     const { data: categories } = data;
 
