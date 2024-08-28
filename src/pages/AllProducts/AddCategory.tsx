@@ -105,7 +105,7 @@ const AddProducts = () => {
         <div
             className="relative w-full h-[100vh] bg-no-repeat bg-center bg-cover"
             style={{
-                backgroundImage: `url("./public/a.jpg")`,
+                backgroundImage: `url("https://i.ibb.co/0DhHM5v/a.jpg")`,
             }}
         >
             <div className="absolute flex flex-col items-center justify-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">

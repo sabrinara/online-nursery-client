@@ -51,7 +51,6 @@ const AllClients = () => {
     const renderPageNumbers = () => {
         const pages = [];
 
-        // If there are multiple pages and we are not on the first page
         if (currentPage > 1) {
             pages.push(
                 <PaginationItem key="previous">
@@ -62,42 +61,41 @@ const AllClients = () => {
             );
         }
 
-        // Previous page (if it exists)
+       
         if (currentPage > 2) {
             pages.push(
                 <PaginationItem key={currentPage - 1}>
-                    <PaginationLink href="#" onClick={() => handleClick(currentPage - 1)}>
+                    <PaginationLink  onClick={() => handleClick(currentPage - 1)}>
                         {currentPage - 1}
                     </PaginationLink>
                 </PaginationItem>
             );
         }
 
-        // Current page
         pages.push(
             <PaginationItem key={currentPage}>
-                <PaginationLink href="#" isActive onClick={() => handleClick(currentPage)}>
+                <PaginationLink  isActive onClick={() => handleClick(currentPage)}>
                     {currentPage}
                 </PaginationLink>
             </PaginationItem>
         );
 
-        // Next page (if it exists)
+
         if (currentPage < totalPages - 1) {
             pages.push(
                 <PaginationItem key={currentPage + 1}>
-                    <PaginationLink href="#" onClick={() => handleClick(currentPage + 1)}>
+                    <PaginationLink  onClick={() => handleClick(currentPage + 1)}>
                         {currentPage + 1}
                     </PaginationLink>
                 </PaginationItem>
             );
         }
 
-        // If there are more pages after the current selection
+     
         if (currentPage < totalPages) {
             pages.push(
                 <PaginationItem key="next">
-                    <PaginationNext href="#" onClick={() => handleClick(currentPage + 1)} />
+                    <PaginationNext  onClick={() => handleClick(currentPage + 1)} />
                 </PaginationItem>
             );
         }
@@ -118,12 +116,12 @@ const AllClients = () => {
                     </p>
                 </div>
                 <div className="w-full md:w-1/2">
-                    <img src="../../../public/people2.jpg" alt="People" className="w-full md:h-[65vh] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105" />
+                    <img src={"https://i.ibb.co/84d5YmV/people2.jpg"} alt="People" className="w-full md:h-[65vh] transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105" />
                 </div>
             </div>
             <div className="relative mb-6 flex md:hidden flex-col md:flex-row-reverse justify-center items-center md:h-[67vh] bg-green-50 py-2 "
                 style={{
-                    backgroundImage: `url("./../public/people2.jpg")`,
+                    backgroundImage: `url("https://i.ibb.co/84d5YmV/people2.jpg")`,
                     backgroundPosition: "center",
                     height: "36vh",
                     backgroundSize: "cover",

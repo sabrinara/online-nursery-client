@@ -78,7 +78,7 @@ const CartCheckout = () => {
       <div
         className="relative w-full h-[30vh] md:h-[60vh] bg-no-repeat bg-center bg-cover"
         style={{
-          backgroundImage: `url("./public/cart.jpg")`,
+          backgroundImage: `url("https://i.ibb.co/vXGZNXS/cart.jpg")`,
         }}
       >
         <div className="absolute flex flex-col items-center justify-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -122,6 +122,7 @@ const CartCheckout = () => {
                 <TableHeader>
                   <TableRow>
                     <TableHead className="text-left">Products</TableHead>
+                    <TableHead className="text-left">Name</TableHead>
                     <TableHead className="text-left">Category</TableHead>
 
                     <TableHead className="text-left">Details</TableHead>
@@ -143,8 +144,9 @@ const CartCheckout = () => {
                           alt={item.title}
                           className="w-16 h-16 object-cover"
                         />
-                        <span className="font-medium">{item.title}</span>
+                        
                       </TableCell>
+                      <TableCell className="text-left">{item.title}</TableCell>
                       <TableCell className="text-left">{item.category}</TableCell>
                       <TableCell className="text-left">
                         <Link to={`/allproducts/${item._id}`}>
