@@ -5,17 +5,16 @@
 <a href="#tech">Technologies</a>
 <a href="#started">Getting Started</a>
 <a href="#routes">API Endpoints</a>
+<a href="#tech">Technologies</a>
+<a href="#tech">Technologies</a>
 
 </p>
-
-
-
 
 <p align="center">
 <a href="https://github.com/sabrinara/online-nursery-client">📱 Visit this Project</a>
 </p>
  
-<h2 id="technologies">💻 Technologies</h2>
+<h2 id="tech">💻 Technologies</h2>
 
 list of all technologies we used
 - React
