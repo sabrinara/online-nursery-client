@@ -5,8 +5,8 @@
 <a href="#tech">Technologies</a>
 <a href="#started">Getting Started</a>
 <a href="#routes">API Endpoints</a>
-<a href="#tech">Technologies</a>
-<a href="#tech">Technologies</a>
+<!-- <a href="#colab">Collaboration</a> -->
+<a href="#contribute">Contribute</a>
 
 </p>
 
@@ -63,9 +63,9 @@ npm run dev
 ```
  
 
-
+<!--
  
- <h2 id="colab">🤝 Collaborators</h2>
+ <h2 id="colab">🤝 Collaborators</h2> 
 
 <p>Special thank you for all people that contributed for this project.</p>
 <table>
@@ -84,6 +84,7 @@ npm run dev
 
 </tr>
 </table> 
+-->
  
 <h2 id="contribute">📫 Contribute</h2>
 
