@@ -12,7 +12,7 @@
 
 
 <p align="center">
-<a href="https://github.com/TechBuilderTeam/Project-Syncify.git">📱 Visit this Project</a>
+<a href="https://github.com/sabrinara/online-nursery-client">📱 Visit this Project</a>
 </p>
  
 <h2 id="technologies">💻 Technologies</h2>
