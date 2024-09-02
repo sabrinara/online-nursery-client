@@ -20,7 +20,7 @@ const Footer = () => {
               
               </p> */}
                             <div className="text-sm font-semibold flex items-center gap-2" >
-                                <IoMailUnreadOutline /> <a href="mailto:mohiminulsemon80@gmail.com">mohiminulsemon80@gmail.com</a>
+                                <IoMailUnreadOutline /> <a href="mailto:sabrina.rashid.sara@gmail.com">sabrina.rashid.sara@gmail.com</a>
                             </div>
                         </div>
                     </aside>
