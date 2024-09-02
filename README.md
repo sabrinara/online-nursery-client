@@ -1,10 +1,10 @@
 <h1 align="center" style="font-weight: bold;">NatureNest 💻</h1>
-<p align="center">Nature Nest is a Online Nursery Website </p>
+<p align="center">Nature Nest is a Online Plant Nursery Website </p>
 <a href="https://naturenest-online-nursery.netlify.app" align="center">Live Site.</a>
 <p align="center">
 <a href="#tech">Technologies</a>
 <a href="#started">Getting Started</a>
-<a href="#routes">API Endpoints</a>
+<!-- <a href="#routes">API Endpoints</a> -->
 <!-- <a href="#colab">Collaboration</a> -->
 <a href="#contribute">Contribute</a>
 
@@ -63,28 +63,7 @@ npm run dev
 ```
  
 
-<!--
- 
- <h2 id="colab">🤝 Collaborators</h2> 
 
-<p>Special thank you for all people that contributed for this project.</p>
-<table>
-<tr>
-
-<td align="center">
-<a href="https://github.com/sabrinara">
-<img src="https://lh3.googleusercontent.com/a/ACg8ocKJK7vIhlo7jtM6BH1Tv57FrG3CP4L7ifVPw6ZkxR8-bws0Krk=s288-c-no" width="100px;" alt="Sabrina Rashid Profile Picture"/><br>
-<sub>
-<b>Sabrina Rashid</b>
-</sub>
-</a>
-</td>
-
-
-
-</tr>
-</table> 
--->
  
 <h2 id="contribute">📫 Contribute</h2>
 
