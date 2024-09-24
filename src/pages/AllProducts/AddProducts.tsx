@@ -21,6 +21,7 @@ import { useAddProductMutation, useGetCategoriesQuery } from "@/redux/api/api";
 import { TCategories } from "@/types";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import Loading from "../shared/Loading";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_upload_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -45,11 +46,11 @@ const AddProducts = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-screen mt-10">
-          <p className="text-4xl text-green-500">Loading...</p>
-      </div>
-  );
-  }
+        <div className="flex justify-center items-center h-screen mt-10">
+          <Loading />
+        </div>
+    );
+}
 
   const { data: category } = data || {};
 

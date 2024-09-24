@@ -1,17 +1,18 @@
 import { useGetProductsQuery } from "@/redux/api/api";
 import ProductCard from "../AllCard/ProductCard";
+import Loading from "@/pages/shared/Loading";
 
 
 const TopProducts = () => {
     const {data , isLoading} = useGetProductsQuery([]);
 
     if (isLoading) {
-      return (
-        <div className="flex justify-center items-center h-screen mt-10">
-            <p className="text-4xl text-green-500">Loading...</p>
-        </div>
-    );
-      }
+        return (
+            <div className="flex justify-center items-center h-screen mt-10">
+              <Loading />
+            </div>
+        );
+    }
     // console.log(data);
 
     const { data: products } = data ;

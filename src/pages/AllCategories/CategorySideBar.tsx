@@ -2,6 +2,7 @@ import { useGetCategoriesQuery } from "@/redux/api/api";
 import { TCategories } from "@/types";
 import { Link, useParams } from "react-router-dom";
 import AllProductsByCategory from "./AllProductsByCategory";
+import Loading from "../shared/Loading";
 
 const CategorySideBar = () => {
   const { name: currentCategory } = useParams<{ name: string }>(); // Get the current category from the URL
@@ -9,11 +10,11 @@ const CategorySideBar = () => {
   
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-screen mt-10">
-        <p className="text-4xl text-green-500">Loading...</p>
-      </div>
+        <div className="flex justify-center items-center h-screen mt-10">
+          <Loading />
+        </div>
     );
-  }
+}
   
   const { data: categories } = data;
 

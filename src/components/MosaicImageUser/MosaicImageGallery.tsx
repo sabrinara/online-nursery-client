@@ -1,3 +1,4 @@
+import Loading from "@/pages/shared/Loading";
 import { useGetOrdersQuery } from "@/redux/api/api";
 import { TOrders } from "@/types";
 import { useState } from "react";
@@ -12,7 +13,7 @@ const MosaicImageGallery = () => {
     if (isLoading) {
         return (
             <div className="flex justify-center items-center h-screen mt-10">
-                <p className="text-4xl text-green-500">Loading...</p>
+              <Loading />
             </div>
         );
     }

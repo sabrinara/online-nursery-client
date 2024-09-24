@@ -1,14 +1,15 @@
 
 import { useGetCategoriesQuery } from '@/redux/api/api';
 import CategoryCard from '../AllCard/CategoryCard';
+import Loading from '@/pages/shared/Loading';
 
 const HomeCategory = () => {
     const  {data, isLoading } = useGetCategoriesQuery({});
 
 if (isLoading) {
     return (
-      <p className="text-4xl text-yellow-500 flex justify-center items-center">
-        Loading...
+      <p className="text-4xl  flex justify-center items-center">
+      <Loading />
       </p>
     );
   }

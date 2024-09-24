@@ -17,7 +17,7 @@ import { useAddCategoryMutation } from "@/redux/api/api";
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_upload_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
-const AddProducts = () => {
+const AddCategory = () => {
   const [ addCategory] = useAddCategoryMutation();
 
     const [formData, setFormData] = useState({
@@ -179,4 +179,4 @@ const AddProducts = () => {
     );
 };
 
-export default AddProducts;
+export default AddCategory;

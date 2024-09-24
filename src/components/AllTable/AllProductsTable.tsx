@@ -45,6 +45,7 @@ import { useDeleteProductMutation, useGetCategoriesQuery, useGetProductsQuery, u
 import { TCategories, TProducts } from "@/types";
 import Swal from 'sweetalert2';
 import { toast } from "sonner";
+import Loading from "@/pages/shared/Loading";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_upload_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -77,12 +78,12 @@ const AllProductsTable = () => {
     if (isLoading) {
         return (
             <div className="flex justify-center items-center h-screen mt-10">
-                <p className="text-4xl text-green-500">Loading...</p>
+              <Loading />
             </div>
         );
     }
     if (categoryLoading) {
-        return <div>Loading...</div>
+        return <div> <Loading /></div>
     }
     // console.log(data);
     const { data: product } = data;

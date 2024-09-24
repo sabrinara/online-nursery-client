@@ -1,16 +1,26 @@
 // 
 import Footer from "@/pages/shared/Footer";
+import Loading from "@/pages/shared/Loading";
 import Navbar from "@/pages/shared/Navbar";
+import { useGetProductsQuery } from "@/redux/api/api";
 import { Outlet } from "react-router-dom";
 
 const MainLayout = () => {
+  const { isLoading} = useGetProductsQuery({});
+
   return (
     <div className="text-green-900">
-      {/* text-[#11522c] */}
-      <Navbar></Navbar>
+       {isLoading ? (
+          <>
+            <Loading />
+          </>
+        ) : (
+      <div>
+        <Navbar />
       <Outlet ></Outlet>
       <Footer></Footer>
-
+      </div>
+        )}
     </div>
   );
 };

@@ -2,20 +2,20 @@ import { useParams } from "react-router-dom";
 import { useGetAllProductsCategoriesQuery } from "@/redux/api/api";
 import { TProducts } from "@/types";
 import { FaHeart } from "react-icons/fa";
+import Loading from "../shared/Loading";
 
 const AllProductsByCategory = () => {
   const { name } = useParams<{ name?: string }>();
   const queryName = name ?? 'defaultCategory';
   const { data, isLoading } = useGetAllProductsCategoriesQuery(queryName);
 
-
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-screen mt-10">
-        <p className="text-4xl text-green-500">Loading...</p>
-      </div>
+        <div className="flex justify-center items-center h-screen mt-10">
+          <Loading />
+        </div>
     );
-  }
+}
   const { data: products } = data;
 
 

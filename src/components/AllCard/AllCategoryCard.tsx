@@ -10,6 +10,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { Link } from "react-router-dom";
+import Loading from "@/pages/shared/Loading";
 
 const AllCategoryCard = () => {
   const { data, isLoading } = useGetCategoriesQuery({});
@@ -40,7 +41,7 @@ const AllCategoryCard = () => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen mt-10">
-        <p className="text-4xl text-green-500">Loading...</p>
+        <Loading />
       </div>
     );
   }

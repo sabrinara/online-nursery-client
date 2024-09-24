@@ -5,6 +5,7 @@ import { IoCartOutline } from "react-icons/io5";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
 import { FaHeart } from "react-icons/fa";
+import Loading from "../shared/Loading";
 
 const ProductDetail = () => {
     const { id: _id } = useParams();
@@ -16,11 +17,10 @@ const ProductDetail = () => {
     if (isLoading) {
         return (
             <div className="flex justify-center items-center h-screen mt-10">
-                <p className="text-4xl text-green-500">Loading...</p>
+              <Loading />
             </div>
         );
     }
-
     // console.log(data); 
     const { data: product } = data;
 

@@ -10,17 +10,18 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination";
+import Loading from "../shared/Loading";
 
 const AllClients = () => {
     const { data, isLoading } = useGetOrdersQuery([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedOrder, setSelectedOrder] = useState<TOrders | null>(null);
     const itemsPerPage = 8;
-
+    
     if (isLoading) {
         return (
             <div className="flex justify-center items-center h-screen mt-10">
-                <p className="text-4xl text-green-500">Loading...</p>
+              <Loading />
             </div>
         );
     }
