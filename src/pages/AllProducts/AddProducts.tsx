@@ -253,10 +253,10 @@ const AddProducts = () => {
                 </div>
               </div>
               </div>
-              <CardFooter className="flex justify-between items-center mt-6 -mr-6 -ml-6">
-                <Button variant="outline" type="button">
+              <CardFooter className="flex justify-end items-center mt-6 -mr-6 -ml-6">
+                {/* <Button variant="outline" type="button">
                   Cancel
-                </Button>
+                </Button> */}
                 <Button
                   type="submit"
                   className="bg-green-900"
