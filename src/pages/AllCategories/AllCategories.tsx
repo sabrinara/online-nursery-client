@@ -1,7 +1,7 @@
 import AllCategoryCard from "@/components/AllCard/AllCategoryCard";
 import ScrollToTopButton from "../Home/ScrollToTopButton";
 import { Link, Outlet, useLocation } from "react-router-dom";
-
+import allCategory from "../../../public/category.jpg";
 
 const AllCategories = () => {
     const location = useLocation();
@@ -15,14 +15,14 @@ const AllCategories = () => {
                     <p className="font-jost text-lg font-medium md:pb-2 tracking-wider text-black mt-6">Choose the right category and get plant for you. <br /> That Helps to heal life.</p>
                 </div>
                 <div className="flex ">
-                    <img src="https://wpbingosite.com/wordpress/flacio/wp-content/uploads/2021/12/banner-10-1.jpg" className="md:h-[49vh] lg:h-[70vh] md:w-[42vh] lg:w-[50vh]" alt="" />  
-                    <img src="https://wpbingosite.com/wordpress/flacio/wp-content/uploads/2021/12/banner-10-3.jpg" className="h-[70vh] w-[70vh] md:hidden  lg:flex" alt="" />
+                  
+                    <img src="../../../public/categorybanner1.jpg" className="h-[70vh] w-[110vh]  lg:flex" alt="" />
                 </div>
             </div>
             <div className="flex md:hidden flex-col items-center justify-center">
                 <div className="relative w-full h-[50vh] md:h-[60vh] bg-no-repeat bg-center bg-cover"
                     style={{
-                        backgroundImage: `url("https://wpbingosite.com/wordpress/flacio/wp-content/uploads/2021/12/slider-10-8.jpg")`,
+                        backgroundImage: `url(${allCategory})`,
                         opacity: "0.9",
 
                     }}>
