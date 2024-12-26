@@ -1,14 +1,14 @@
 import AllProductsTable from "@/components/AllTable/AllProductsTable";
 import ScrollToTopButton from "../Home/ScrollToTopButton";
+import allProductsImage from "../../../public/allproducts.jpg";
 
 const AllProducts = () => {
   return (
   <div className="flex flex-col items-center justify-center">
       <div className="relative w-full h-[50vh] md:h-[60vh] bg-no-repeat bg-center bg-cover" 
-    style={{ 
-        backgroundImage: `url("https://gabtor-store-demo.myshopify.com/cdn/shop/files/collection.jpg?v=1662605082")` ,
-     
-        }}>
+    style={{
+      backgroundImage: `url(${allProductsImage})`,
+    }}>
       <div className="absolute flex flex-col items-center justify-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  ">
        
         <h2 className="text-3xl md:text-6xl font-bold md:mb-2 text-green-50">
