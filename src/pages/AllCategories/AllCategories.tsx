@@ -16,7 +16,7 @@ const AllCategories = () => {
                 </div>
                 <div className="flex ">
                   
-                    <img src="../../../public/categorybanner1.jpg" className="h-[70vh] w-[110vh]  lg:flex" alt="" />
+                    <img src={`https://i.ibb.co.com/JFYJH89/categorybanner1.jpg`} className="h-[70vh] w-[110vh]  lg:flex" alt="" />
                 </div>
             </div>
             <div className="flex md:hidden flex-col items-center justify-center">
