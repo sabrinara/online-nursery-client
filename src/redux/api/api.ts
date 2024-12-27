@@ -52,9 +52,13 @@ export const baseApi = createApi({
       }),
       providesTags: ["products"],
     }),
+    
     getAllProductsCategories: builder.query({
       query: (name: string) => {
-        const formattedName = decodeURIComponent(name); // Decodes '%20' to spaces
+        // remove the last space if available
+        const trimmedName = name.trimEnd();
+        const formattedName = decodeURIComponent(trimmedName);
+        
         return {
           method: "GET",
           url: `/products?&category=${formattedName}`,
@@ -62,9 +66,6 @@ export const baseApi = createApi({
       },
       providesTags: ["products", "categories"],
     }),
-    
-    
-    
     
     getCategories: builder.query ({
       query: () => ({

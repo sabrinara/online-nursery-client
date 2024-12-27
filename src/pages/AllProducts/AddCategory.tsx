@@ -12,19 +12,20 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
-import { useAddCategoryMutation } from "@/redux/api/api";
+import { useAddCategoryMutation, useGetCategoriesQuery } from "@/redux/api/api";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_upload_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AddCategory = () => {
-  const [ addCategory] = useAddCategoryMutation();
+    const { data: categories, isLoading: loadingCategories } = useGetCategoriesQuery({});
+    console.log(categories.data);
+    const [addCategory] = useAddCategoryMutation();
 
     const [formData, setFormData] = useState({
         name: "",
         description: "",
         imageFile: null as File | null,
-
     });
 
     const navigate = useNavigate();
@@ -67,6 +68,29 @@ const AddCategory = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        if (loadingCategories) {
+            toast.error("Please wait, categories are loading");
+            return;
+        }
+
+
+
+      
+
+        // Check if category name already exists
+        const trimmedName = formData.name.trimEnd();
+        const categoryExists = categories.data.some((category: any) => category.name === trimmedName);
+
+        console.log(categoryExists)
+
+        // if (categoryExists) {
+        //     toast.error("Category name already exists");
+        //     return;
+        // }
+
+
+
         setUploading(true);
 
         let imageUrl = "";
@@ -80,16 +104,22 @@ const AddCategory = () => {
         }
 
         const categoryData = {
-            name: formData.name,
-            description: formData.description,
-            imageUrl: imageUrl ,
+            name: formData.name.trimEnd(),
+            description: formData.description.trim(),
+            imageUrl: imageUrl,
         };
 
         try {
-            const response = await addCategory(categoryData).unwrap();
-            navigate("/allcategories");
-            console.log("Category added successfully:", response);
-            toast.success("Category added successfully");
+            if (categoryExists) {
+                toast.error("Category name already exists, give another name");
+                return;
+            }
+            else {
+                const response = await addCategory(categoryData).unwrap();
+                navigate("/allcategories");
+                console.log("Category added successfully:", response);
+                toast.success("Category added successfully");
+            }
         } catch (error: any) {
             if (error.data && error.data.message) {
                 console.error("Error message from server:", error.data.message);
@@ -100,6 +130,8 @@ const AddCategory = () => {
             setUploading(false);
         }
     };
+
+
 
     return (
         <div
@@ -145,24 +177,18 @@ const AddCategory = () => {
                                         required
                                     />
                                 </div>
-                           
-                                    <div className="flex flex-col space-y-1.5 text-green-50">
-                                        <Label htmlFor="imageUrl">Image</Label>
-                                        <Input
-                                            className="text-green-950"
-                                            type="file"
-                                            id="imageUrl"
-                                            onChange={handleFileChange}
-                                            required
-                                        />
-                                    </div>
-                                   
-                              
+                                <div className="flex flex-col space-y-1.5 text-green-50">
+                                    <Label htmlFor="imageUrl">Image</Label>
+                                    <Input
+                                        className="text-green-950"
+                                        type="file"
+                                        id="imageUrl"
+                                        onChange={handleFileChange}
+                                        required
+                                    />
+                                </div>
                             </div>
                             <CardFooter className="flex justify-end items-center mt-6 -mr-6 -ml-6">
-                                {/* <Button variant="outline" type="button">
-                                    Cancel
-                                </Button> */}
                                 <Button
                                     type="submit"
                                     className="bg-green-900"
